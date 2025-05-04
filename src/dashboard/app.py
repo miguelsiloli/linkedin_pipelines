@@ -6,7 +6,7 @@ import pandas as pd
 
 # --- Relative Imports ---
 # Data Layer
-from bq_connector import fetch_latest_job_data
+from .bq_connector import fetch_latest_job_data
 # Utils
 from .utils.processing import calculate_metrics
 # Components

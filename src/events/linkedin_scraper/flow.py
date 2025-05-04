@@ -160,32 +160,32 @@ def linkedin_scrape_flow(
                     logger.info(f"  Processing job {i+1}/{len(jobs_to_process_this_pass)} (ID: {job_id}) on page {display_page_num}")
                     try:
                         # Use the job_card_element found earlier, but wrap in wait just in case
-                        job_element = WebDriverWait(driver, 5).until(
-                            EC.element_to_be_clickable(job_card_element)
-                           # Or re-find by ID: EC.element_to_be_clickable((By.CSS_SELECTOR, f"div[data-job-id='{job_id}']"))
+                        job_element = WebDriverWait(driver, 10).until(
+                            # EC.element_to_be_clickable(job_card_element)
+                            EC.element_to_be_clickable((By.CSS_SELECTOR, f"div[data-job-id='{job_id}']"))
                         )
 
                         # Scroll the specific job element into center view for clicking
                         driver.execute_script("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});", job_element)
-                        time.sleep(0.6 + interaction_delay * 0.1) # Small delay after scroll
+                        time.sleep(1 + interaction_delay * 0.1) # Small delay after scroll
 
                         # Click the job card
                         try:
                             job_element.click()
                         except ElementClickInterceptedException:
                             logger.warning(f"  Direct click intercepted for job ID: {job_id}. Trying JS click.")
-                            time.sleep(0.3) # Pause before JS click
-                            driver.execute_script("arguments[0].click();", job_element)
+                            time.sleep(0.5) # Pause before JS click
+                            driver.execute_script("arguments[0].click();", f"div[data-job-id='{job_id}']")
 
                         # Wait for the details pane to load/update (wait for title visibility)
-                        time.sleep(0.3) # Short pause before wait
-                        WebDriverWait(driver, page_load_timeout).until(
-                            EC.visibility_of_element_located(config.JOB_DETAIL_TITLE_SELECTOR)
-                        )
+                        # time.sleep(1) # Short pause before wait
+                        # WebDriverWait(driver, page_load_timeout).until(
+                        #     EC.visibility_of_element_located(config.JOB_DETAIL_TITLE_SELECTOR)
+                        # )
                         # Optional: Check if the title matches expectation (more robust)
                         # detail_title = driver.find_element(*config.JOB_DETAIL_TITLE_SELECTOR).text
 
-                        time.sleep(interaction_delay * 0.75) # Wait for potential dynamic content in details
+                        time.sleep(interaction_delay * 1) # Wait for potential dynamic content in details
 
                         # Get page source *after* waiting for details
                         current_page_source = driver.page_source

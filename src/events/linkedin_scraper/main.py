@@ -43,7 +43,7 @@ if __name__ == "__main__":
     try:
         MAX_PAGES_TO_SCRAPE = int(os.getenv("MAX_PAGES_TO_SCRAPE", "5"))
         PAGE_LOAD_TIMEOUT = int(os.getenv("PAGE_LOAD_TIMEOUT", "20")) # Increased default
-        INTERACTION_DELAY = float(os.getenv("INTERACTION_DELAY", "2.5")) # Increased default
+        INTERACTION_DELAY = float(os.getenv("INTERACTION_DELAY", "4")) # Increased default
         SCROLL_PAUSES_WITHIN_PAGE = int(os.getenv("SCROLL_PAUSES_WITHIN_PAGE", "4")) # Scrolls *within* a page
         DELAY_BETWEEN_SCROLLS = float(os.getenv("DELAY_BETWEEN_SCROLLS", "1.5")) # Delay *between* scroll actions
     except ValueError as e:

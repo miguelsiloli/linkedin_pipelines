@@ -18,8 +18,8 @@ KEYWORD_SEARCH_SELECTOR = (By.CSS_SELECTOR, "input[id^='jobs-search-box-keyword-
 LOCATION_SEARCH_SELECTOR = (By.CSS_SELECTOR, "input[id^='jobs-search-box-location-id']")
 
 # Job Results & Details
-JOB_LIST_SELECTOR = (By.CSS_SELECTOR, ".jobs-search-results-list")
-JOB_CARD_SELECTOR = (By.CSS_SELECTOR, "div.job-card-container[data-job-id]")
+JOB_LIST_SELECTOR = (By.CSS_SELECTOR, "div.scaffold-layout__list")
+JOB_CARD_SELECTOR = (By.CSS_SELECTOR, "div.job-card-container[data-job-id]") 
 JOB_DETAIL_PANE_SELECTOR = (By.CSS_SELECTOR, "div.jobs-search__job-details--container") # Keep if needed elsewhere
 JOB_DETAIL_TITLE_SELECTOR = (By.CSS_SELECTOR, ".jobs-details-top-card__job-title")
 JOB_LIST_SCROLL_CONTAINER = ".jobs-search-results-list__list" # Specific scroll container
