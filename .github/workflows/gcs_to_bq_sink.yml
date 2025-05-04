@@ -1,9 +1,10 @@
 name: GCS to BigQuery Sink
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Scrape and Parse GCS"]
+    types:
+      - successful
   workflow_dispatch:
 jobs:
   deploy:
