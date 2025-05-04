@@ -1,0 +1,391 @@
+2025-05-02 15:48:02,527 - INFO - [main.py:38] - configure_logging() - Logging configured to level INFO in linkedin_loader.log
+2025-05-02 15:48:02,527 - INFO - [main.py:54] - <module>() - --- LinkedIn GCS to BigQuery Loader ---
+2025-05-02 15:48:02,527 - INFO - [main.py:55] - <module>() - Using GCS Bucket: None
+2025-05-02 15:48:02,528 - INFO - [main.py:56] - <module>() - Using GCS Subfolder Path: None
+2025-05-02 15:48:02,528 - INFO - [main.py:57] - <module>() - Using Filename Prefix: linkedin_jobs_data_
+2025-05-02 15:48:02,528 - INFO - [main.py:58] - <module>() - Using Filename Suffix: .parquet
+2025-05-02 15:48:02,528 - INFO - [main.py:59] - <module>() - Using Filename Date Regex: linkedin_jobs_data_(\d{4}-\d{2}-\d{2})\.parquet
+2025-05-02 15:48:02,528 - ERROR - [main.py:66] - <module>() - Exiting: Missing required environment variables: GCS_LINKEDIN_BUCKET_NAME, GCS_LINKEDIN_SUBFOLDER_PATH
+2025-05-02 15:49:57,666 - INFO - [main.py:38] - configure_logging() - Logging configured to level INFO in linkedin_loader.log
+2025-05-02 15:49:57,667 - INFO - [main.py:54] - <module>() - --- LinkedIn GCS to BigQuery Loader ---
+2025-05-02 15:49:57,667 - INFO - [main.py:55] - <module>() - Using GCS Bucket: miguelsiloli-housing-data
+2025-05-02 15:49:57,667 - INFO - [main.py:56] - <module>() - Using GCS Subfolder Path: linkedin/raw
+2025-05-02 15:49:57,667 - INFO - [main.py:57] - <module>() - Using Filename Prefix: linkedin_jobs_data_
+2025-05-02 15:49:57,667 - INFO - [main.py:58] - <module>() - Using Filename Suffix: .parquet
+2025-05-02 15:49:57,667 - INFO - [main.py:59] - <module>() - Using Filename Date Regex: linkedin_jobs_data_(\d{4}-\d{2}-\d{2})\.parquet
+2025-05-02 15:49:57,667 - INFO - [gcs_to_bq.py:106] - find_latest_file_in_gcs_by_name() - Searching for latest file by name matching 'linkedin_jobs_data_*.parquet' in: gs://miguelsiloli-housing-data/linkedin/raw/
+2025-05-02 15:49:57,701 - INFO - [gcs_to_bq.py:55] - get_storage_client() - Creating storage client for project: poised-space-456813-t0
+2025-05-02 15:49:57,977 - WARNING - [gcs_to_bq.py:125] - find_latest_file_in_gcs_by_name() - No files matching pattern 'linkedin_jobs_data_*.parquet' found in gs://miguelsiloli-housing-data/linkedin/raw/
+2025-05-02 15:49:57,977 - WARNING - [main.py:79] - <module>() - No suitable Parquet file found in GCS. Exiting.
+2025-05-02 15:51:01,218 - INFO - [main.py:38] - configure_logging() - Logging configured to level INFO in linkedin_loader.log
+2025-05-02 15:51:01,219 - INFO - [main.py:54] - <module>() - --- LinkedIn GCS to BigQuery Loader ---
+2025-05-02 15:51:01,219 - INFO - [main.py:55] - <module>() - Using GCS Bucket: miguelsiloli-housing-data
+2025-05-02 15:51:01,219 - INFO - [main.py:56] - <module>() - Using GCS Subfolder Path: linkedin/raw
+2025-05-02 15:51:01,219 - INFO - [main.py:57] - <module>() - Using Filename Prefix: linkedin_jobs_data_
+2025-05-02 15:51:01,219 - INFO - [main.py:58] - <module>() - Using Filename Suffix: .parquet
+2025-05-02 15:51:01,219 - INFO - [main.py:59] - <module>() - Using Filename Date Regex: linkedin_jobs_data_(\d{4}-\d{2}-\d{2})\.parquet
+2025-05-02 15:51:01,219 - INFO - [gcs_to_bq.py:106] - find_latest_file_in_gcs_by_name() - Searching for latest file by name matching 'linkedin_jobs_data_*.parquet' in: gs://miguelsiloli-housing-data/linkedin/raw/
+2025-05-02 15:51:01,253 - INFO - [gcs_to_bq.py:55] - get_storage_client() - Creating storage client for project: poised-space-456813-t0
+2025-05-02 15:51:01,490 - WARNING - [gcs_to_bq.py:125] - find_latest_file_in_gcs_by_name() - No files matching pattern 'linkedin_jobs_data_*.parquet' found in gs://miguelsiloli-housing-data/linkedin/raw/
+2025-05-02 15:51:01,490 - WARNING - [main.py:79] - <module>() - No suitable Parquet file found in GCS. Exiting.
+2025-05-02 15:51:56,365 - INFO - [main.py:38] - configure_logging() - Logging configured to level INFO in linkedin_loader.log
+2025-05-02 15:51:56,365 - INFO - [main.py:54] - <module>() - --- LinkedIn GCS to BigQuery Loader ---
+2025-05-02 15:51:56,365 - INFO - [main.py:55] - <module>() - Using GCS Bucket: miguelsiloli-housing-data
+2025-05-02 15:51:56,365 - INFO - [main.py:56] - <module>() - Using GCS Subfolder Path: linkedin/raw
+2025-05-02 15:51:56,365 - INFO - [main.py:57] - <module>() - Using Filename Prefix: linkedin_jobs_data_
+2025-05-02 15:51:56,365 - INFO - [main.py:58] - <module>() - Using Filename Suffix: .parquet
+2025-05-02 15:51:56,365 - INFO - [main.py:59] - <module>() - Using Filename Date Regex: linkedin_jobs_data_(\d{4}-\d{2}-\d{2})\.parquet
+2025-05-02 15:51:56,365 - INFO - [gcs_to_bq.py:106] - find_latest_file_in_gcs_by_name() - Searching for latest file by name matching 'linkedin_jobs_data_*.parquet' in: gs://miguelsiloli-housing-data/linkedin/raw/
+2025-05-02 15:51:56,399 - INFO - [gcs_to_bq.py:55] - get_storage_client() - Creating storage client for project: poised-space-456813-t0
+2025-05-02 15:51:56,658 - WARNING - [gcs_to_bq.py:125] - find_latest_file_in_gcs_by_name() - No files matching pattern 'linkedin_jobs_data_*.parquet' found in gs://miguelsiloli-housing-data/linkedin/raw/
+2025-05-02 15:51:56,658 - WARNING - [main.py:79] - <module>() - No suitable Parquet file found in GCS. Exiting.
+2025-05-02 15:52:49,942 - INFO - [main.py:38] - configure_logging() - Logging configured to level INFO in linkedin_loader.log
+2025-05-02 15:52:49,942 - INFO - [main.py:54] - <module>() - --- LinkedIn GCS to BigQuery Loader ---
+2025-05-02 15:52:49,942 - INFO - [main.py:55] - <module>() - Using GCS Bucket: miguelsiloli-housing-data
+2025-05-02 15:52:49,942 - INFO - [main.py:56] - <module>() - Using GCS Subfolder Path: linkedin/raw
+2025-05-02 15:52:49,942 - INFO - [main.py:57] - <module>() - Using Filename Prefix: linkedin_scrap_
+2025-05-02 15:52:49,942 - INFO - [main.py:58] - <module>() - Using Filename Suffix: .parquet
+2025-05-02 15:52:49,942 - INFO - [main.py:59] - <module>() - Using Filename Date Regex: linkedin_jobs_data_(\d{4}-\d{2}-\d{2})\.parquet
+2025-05-02 15:52:49,942 - INFO - [gcs_to_bq.py:106] - find_latest_file_in_gcs_by_name() - Searching for latest file by name matching 'linkedin_scrap_*.parquet' in: gs://miguelsiloli-housing-data/linkedin/raw/
+2025-05-02 15:52:49,978 - INFO - [gcs_to_bq.py:55] - get_storage_client() - Creating storage client for project: poised-space-456813-t0
+2025-05-02 15:52:50,192 - INFO - [gcs_to_bq.py:134] - find_latest_file_in_gcs_by_name() - Latest file found (by filename sort): gs://miguelsiloli-housing-data/linkedin/raw/linkedin_scrap_2025-05-02.parquet
+2025-05-02 15:52:50,192 - WARNING - [gcs_to_bq.py:169] - extract_date_from_filename() - Could not find date pattern in filename 'linkedin_scrap_2025-05-02.parquet' using regex 'linkedin_jobs_data_(\d{4}-\d{2}-\d{2})\.parquet'
+2025-05-02 15:52:50,192 - ERROR - [main.py:87] - <module>() - Could not extract ingestion date from filename: linkedin_scrap_2025-05-02.parquet. Halting processing for this file.
+2025-05-02 15:53:24,712 - INFO - [main.py:38] - configure_logging() - Logging configured to level INFO in linkedin_loader.log
+2025-05-02 15:53:24,712 - INFO - [main.py:54] - <module>() - --- LinkedIn GCS to BigQuery Loader ---
+2025-05-02 15:53:24,713 - INFO - [main.py:55] - <module>() - Using GCS Bucket: miguelsiloli-housing-data
+2025-05-02 15:53:24,713 - INFO - [main.py:56] - <module>() - Using GCS Subfolder Path: linkedin/raw
+2025-05-02 15:53:24,713 - INFO - [main.py:57] - <module>() - Using Filename Prefix: linkedin_scrap_
+2025-05-02 15:53:24,713 - INFO - [main.py:58] - <module>() - Using Filename Suffix: .parquet
+2025-05-02 15:53:24,713 - INFO - [main.py:59] - <module>() - Using Filename Date Regex: linkedin_jobs_data_(\d{4}-\d{2}-\d{2})\.parquet
+2025-05-02 15:53:24,713 - INFO - [gcs_to_bq.py:106] - find_latest_file_in_gcs_by_name() - Searching for latest file by name matching 'linkedin_scrap_*.parquet' in: gs://miguelsiloli-housing-data/linkedin/raw/
+2025-05-02 15:53:24,750 - INFO - [gcs_to_bq.py:55] - get_storage_client() - Creating storage client for project: poised-space-456813-t0
+2025-05-02 15:53:24,991 - INFO - [gcs_to_bq.py:134] - find_latest_file_in_gcs_by_name() - Latest file found (by filename sort): gs://miguelsiloli-housing-data/linkedin/raw/linkedin_scrap_2025-05-02.parquet
+2025-05-02 15:53:24,991 - WARNING - [gcs_to_bq.py:169] - extract_date_from_filename() - Could not find date pattern in filename 'linkedin_scrap_2025-05-02.parquet' using regex 'linkedin_jobs_data_(\d{4}-\d{2}-\d{2})\.parquet'
+2025-05-02 15:53:24,991 - ERROR - [main.py:87] - <module>() - Could not extract ingestion date from filename: linkedin_scrap_2025-05-02.parquet. Halting processing for this file.
+2025-05-02 15:59:52,694 - INFO - [main.py:38] - configure_logging() - Logging configured to level INFO in linkedin_loader.log
+2025-05-02 15:59:52,707 - INFO - [main.py:54] - <module>() - --- LinkedIn GCS to BigQuery Loader ---
+2025-05-02 15:59:52,707 - INFO - [main.py:55] - <module>() - Using GCS Bucket: miguelsiloli-housing-data
+2025-05-02 15:59:52,707 - INFO - [main.py:56] - <module>() - Using GCS Subfolder Path: linkedin/raw
+2025-05-02 15:59:52,707 - INFO - [main.py:57] - <module>() - Using Filename Prefix: linkedin_scrap_
+2025-05-02 15:59:52,707 - INFO - [main.py:58] - <module>() - Using Filename Suffix: .parquet
+2025-05-02 15:59:52,707 - INFO - [main.py:59] - <module>() - Using Filename Date Regex: linkedin_scrap_(\d{4}-\d{2}-\d{2})\.parquet
+2025-05-02 15:59:52,707 - INFO - [gcs_to_bq.py:106] - find_latest_file_in_gcs_by_name() - Searching for latest file by name matching 'linkedin_scrap_*.parquet' in: gs://miguelsiloli-housing-data/linkedin/raw/
+2025-05-02 15:59:52,747 - INFO - [gcs_to_bq.py:55] - get_storage_client() - Creating storage client for project: poised-space-456813-t0
+2025-05-02 15:59:53,009 - INFO - [gcs_to_bq.py:134] - find_latest_file_in_gcs_by_name() - Latest file found (by filename sort): gs://miguelsiloli-housing-data/linkedin/raw/linkedin_scrap_2025-05-02.parquet
+2025-05-02 15:59:53,009 - INFO - [gcs_to_bq.py:163] - extract_date_from_filename() - Extracted ingestion date 2025-05-02 from filename 'linkedin_scrap_2025-05-02.parquet'
+2025-05-02 15:59:53,009 - INFO - [gcs_to_bq.py:177] - read_parquet_from_gcs() - Reading Parquet file from GCS: gs://miguelsiloli-housing-data/linkedin/raw/linkedin_scrap_2025-05-02.parquet
+2025-05-02 15:59:53,044 - INFO - [gcs_to_bq.py:55] - get_storage_client() - Creating storage client for project: poised-space-456813-t0
+2025-05-02 15:59:53,045 - INFO - [gcs_to_bq.py:189] - read_parquet_from_gcs() - Downloading linkedin/raw/linkedin_scrap_2025-05-02.parquet to temporary file /tmp/tmp8_ej5qy9.parquet
+2025-05-02 15:59:53,758 - INFO - [gcs_to_bq.py:193] - read_parquet_from_gcs() - Reading Parquet data from /tmp/tmp8_ej5qy9.parquet
+2025-05-02 15:59:53,818 - INFO - [gcs_to_bq.py:195] - read_parquet_from_gcs() - Successfully read Parquet file: 2301 rows
+2025-05-02 15:59:53,818 - INFO - [gcs_to_bq.py:216] - process_linkedin_job_data() - Starting transformation for 2301 raw LinkedIn job records.
+2025-05-02 15:59:53,847 - INFO - [gcs_to_bq.py:265] - process_linkedin_job_data() - Successfully transformed LinkedIn data. Resulting shape: (2301, 16)
+2025-05-02 15:59:53,911 - INFO - [gcs_to_bq.py:316] - check_existing_keys_in_bigquery() - Checking 1057 unique (job_id, ingestionDate) pairs against poised-space-456813-t0.linkedin.scrap_sink
+2025-05-02 15:59:53,943 - INFO - [gcs_to_bq.py:68] - get_bigquery_client() - Creating BigQuery client for project: poised-space-456813-t0
+2025-05-02 15:59:53,953 - ERROR - [gcs_to_bq.py:352] - check_existing_keys_in_bigquery() - Error checking existing keys in BigQuery: Object of type date is not JSON serializable
+Traceback (most recent call last):
+  File "/home/miguel/Projects/linkedin_pipeline/src/events/gcs_to_bg_sink/gcs_to_bq.py", line 341, in check_existing_keys_in_bigquery
+    query_job = bq_client.query(query, job_config=job_config)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/client.py", line 3502, in query
+    return _job_helpers.query_jobs_insert(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/_job_helpers.py", line 181, in query_jobs_insert
+    future = do_query()
+             ^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 293, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 153, in retry_target
+    _retry_error_helper(
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_base.py", line 212, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 144, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/_job_helpers.py", line 137, in do_query
+    query_job._begin(retry=retry, timeout=timeout)
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1383, in _begin
+    super(QueryJob, self)._begin(client=client, retry=retry, timeout=timeout)
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/base.py", line 748, in _begin
+    api_response = client._call_api(
+                   ^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/client.py", line 843, in _call_api
+    return call()
+           ^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 293, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 153, in retry_target
+    _retry_error_helper(
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_base.py", line 212, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 144, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/_http/__init__.py", line 479, in api_request
+    data = json.dumps(data)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type date is not JSON serializable
+2025-05-02 15:59:53,979 - ERROR - [main.py:120] - <module>() - An error occurred during the process: Object of type date is not JSON serializable
+Traceback (most recent call last):
+  File "/home/miguel/Projects/linkedin_pipeline/src/events/gcs_to_bg_sink/main.py", line 105, in <module>
+    existing_keys = check_existing_keys_in_bigquery(transformed_data_df)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/Projects/linkedin_pipeline/src/events/gcs_to_bg_sink/gcs_to_bq.py", line 341, in check_existing_keys_in_bigquery
+    query_job = bq_client.query(query, job_config=job_config)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/client.py", line 3502, in query
+    return _job_helpers.query_jobs_insert(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/_job_helpers.py", line 181, in query_jobs_insert
+    future = do_query()
+             ^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 293, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 153, in retry_target
+    _retry_error_helper(
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_base.py", line 212, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 144, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/_job_helpers.py", line 137, in do_query
+    query_job._begin(retry=retry, timeout=timeout)
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1383, in _begin
+    super(QueryJob, self)._begin(client=client, retry=retry, timeout=timeout)
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/base.py", line 748, in _begin
+    api_response = client._call_api(
+                   ^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/client.py", line 843, in _call_api
+    return call()
+           ^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 293, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 153, in retry_target
+    _retry_error_helper(
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_base.py", line 212, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 144, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/_http/__init__.py", line 479, in api_request
+    data = json.dumps(data)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type date is not JSON serializable
+2025-05-02 16:03:07,649 - INFO - [main.py:38] - configure_logging() - Logging configured to level INFO in linkedin_loader.log
+2025-05-02 16:03:07,649 - INFO - [main.py:54] - <module>() - --- LinkedIn GCS to BigQuery Loader ---
+2025-05-02 16:03:07,649 - INFO - [main.py:55] - <module>() - Using GCS Bucket: miguelsiloli-housing-data
+2025-05-02 16:03:07,649 - INFO - [main.py:56] - <module>() - Using GCS Subfolder Path: linkedin/raw
+2025-05-02 16:03:07,649 - INFO - [main.py:57] - <module>() - Using Filename Prefix: linkedin_scrap_
+2025-05-02 16:03:07,649 - INFO - [main.py:58] - <module>() - Using Filename Suffix: .parquet
+2025-05-02 16:03:07,649 - INFO - [main.py:59] - <module>() - Using Filename Date Regex: linkedin_scrap_(\d{4}-\d{2}-\d{2})\.parquet
+2025-05-02 16:03:07,649 - INFO - [gcs_to_bq.py:106] - find_latest_file_in_gcs_by_name() - Searching for latest file by name matching 'linkedin_scrap_*.parquet' in: gs://miguelsiloli-housing-data/linkedin/raw/
+2025-05-02 16:03:07,687 - INFO - [gcs_to_bq.py:55] - get_storage_client() - Creating storage client for project: poised-space-456813-t0
+2025-05-02 16:03:07,950 - INFO - [gcs_to_bq.py:134] - find_latest_file_in_gcs_by_name() - Latest file found (by filename sort): gs://miguelsiloli-housing-data/linkedin/raw/linkedin_scrap_2025-05-02.parquet
+2025-05-02 16:03:07,951 - INFO - [gcs_to_bq.py:163] - extract_date_from_filename() - Extracted ingestion date 2025-05-02 from filename 'linkedin_scrap_2025-05-02.parquet'
+2025-05-02 16:03:07,951 - INFO - [gcs_to_bq.py:177] - read_parquet_from_gcs() - Reading Parquet file from GCS: gs://miguelsiloli-housing-data/linkedin/raw/linkedin_scrap_2025-05-02.parquet
+2025-05-02 16:03:07,985 - INFO - [gcs_to_bq.py:55] - get_storage_client() - Creating storage client for project: poised-space-456813-t0
+2025-05-02 16:03:07,985 - INFO - [gcs_to_bq.py:189] - read_parquet_from_gcs() - Downloading linkedin/raw/linkedin_scrap_2025-05-02.parquet to temporary file /tmp/tmp_xzaw401.parquet
+2025-05-02 16:03:08,696 - INFO - [gcs_to_bq.py:193] - read_parquet_from_gcs() - Reading Parquet data from /tmp/tmp_xzaw401.parquet
+2025-05-02 16:03:08,743 - INFO - [gcs_to_bq.py:195] - read_parquet_from_gcs() - Successfully read Parquet file: 2301 rows
+2025-05-02 16:03:08,744 - INFO - [gcs_to_bq.py:216] - process_linkedin_job_data() - Starting transformation for 2301 raw LinkedIn job records.
+2025-05-02 16:03:08,755 - INFO - [gcs_to_bq.py:265] - process_linkedin_job_data() - Successfully transformed LinkedIn data. Resulting shape: (2301, 16)
+2025-05-02 16:03:08,795 - INFO - [gcs_to_bq.py:316] - check_existing_keys_in_bigquery() - Checking 1057 unique (job_id, ingestionDate) pairs against poised-space-456813-t0.linkedin.linkedin_jobs_staging
+2025-05-02 16:03:08,836 - INFO - [gcs_to_bq.py:68] - get_bigquery_client() - Creating BigQuery client for project: poised-space-456813-t0
+2025-05-02 16:03:08,848 - ERROR - [gcs_to_bq.py:352] - check_existing_keys_in_bigquery() - Error checking existing keys in BigQuery: Object of type date is not JSON serializable
+Traceback (most recent call last):
+  File "/home/miguel/Projects/linkedin_pipeline/src/events/gcs_to_bg_sink/gcs_to_bq.py", line 341, in check_existing_keys_in_bigquery
+    query_job = bq_client.query(query, job_config=job_config)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/client.py", line 3502, in query
+    return _job_helpers.query_jobs_insert(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/_job_helpers.py", line 181, in query_jobs_insert
+    future = do_query()
+             ^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 293, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 153, in retry_target
+    _retry_error_helper(
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_base.py", line 212, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 144, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/_job_helpers.py", line 137, in do_query
+    query_job._begin(retry=retry, timeout=timeout)
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1383, in _begin
+    super(QueryJob, self)._begin(client=client, retry=retry, timeout=timeout)
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/base.py", line 748, in _begin
+    api_response = client._call_api(
+                   ^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/client.py", line 843, in _call_api
+    return call()
+           ^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 293, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 153, in retry_target
+    _retry_error_helper(
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_base.py", line 212, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 144, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/_http/__init__.py", line 479, in api_request
+    data = json.dumps(data)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type date is not JSON serializable
+2025-05-02 16:03:08,851 - ERROR - [main.py:120] - <module>() - An error occurred during the process: Object of type date is not JSON serializable
+Traceback (most recent call last):
+  File "/home/miguel/Projects/linkedin_pipeline/src/events/gcs_to_bg_sink/main.py", line 105, in <module>
+    existing_keys = check_existing_keys_in_bigquery(transformed_data_df)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/Projects/linkedin_pipeline/src/events/gcs_to_bg_sink/gcs_to_bq.py", line 341, in check_existing_keys_in_bigquery
+    query_job = bq_client.query(query, job_config=job_config)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/client.py", line 3502, in query
+    return _job_helpers.query_jobs_insert(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/_job_helpers.py", line 181, in query_jobs_insert
+    future = do_query()
+             ^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 293, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 153, in retry_target
+    _retry_error_helper(
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_base.py", line 212, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 144, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/_job_helpers.py", line 137, in do_query
+    query_job._begin(retry=retry, timeout=timeout)
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1383, in _begin
+    super(QueryJob, self)._begin(client=client, retry=retry, timeout=timeout)
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/base.py", line 748, in _begin
+    api_response = client._call_api(
+                   ^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/client.py", line 843, in _call_api
+    return call()
+           ^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 293, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 153, in retry_target
+    _retry_error_helper(
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_base.py", line 212, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 144, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/_http/__init__.py", line 479, in api_request
+    data = json.dumps(data)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type date is not JSON serializable
+2025-05-02 16:04:37,058 - INFO - [main.py:38] - configure_logging() - Logging configured to level INFO in linkedin_loader.log
+2025-05-02 16:04:37,058 - INFO - [main.py:54] - <module>() - --- LinkedIn GCS to BigQuery Loader ---
+2025-05-02 16:04:37,058 - INFO - [main.py:55] - <module>() - Using GCS Bucket: miguelsiloli-housing-data
+2025-05-02 16:04:37,058 - INFO - [main.py:56] - <module>() - Using GCS Subfolder Path: linkedin/raw
+2025-05-02 16:04:37,059 - INFO - [main.py:57] - <module>() - Using Filename Prefix: linkedin_scrap_
+2025-05-02 16:04:37,059 - INFO - [main.py:58] - <module>() - Using Filename Suffix: .parquet
+2025-05-02 16:04:37,059 - INFO - [main.py:59] - <module>() - Using Filename Date Regex: linkedin_scrap_(\d{4}-\d{2}-\d{2})\.parquet
+2025-05-02 16:04:37,059 - INFO - [gcs_to_bq.py:106] - find_latest_file_in_gcs_by_name() - Searching for latest file by name matching 'linkedin_scrap_*.parquet' in: gs://miguelsiloli-housing-data/linkedin/raw/
+2025-05-02 16:04:37,095 - INFO - [gcs_to_bq.py:55] - get_storage_client() - Creating storage client for project: poised-space-456813-t0
+2025-05-02 16:04:37,330 - INFO - [gcs_to_bq.py:134] - find_latest_file_in_gcs_by_name() - Latest file found (by filename sort): gs://miguelsiloli-housing-data/linkedin/raw/linkedin_scrap_2025-05-02.parquet
+2025-05-02 16:04:37,331 - INFO - [gcs_to_bq.py:163] - extract_date_from_filename() - Extracted ingestion date 2025-05-02 from filename 'linkedin_scrap_2025-05-02.parquet'
+2025-05-02 16:04:37,331 - INFO - [gcs_to_bq.py:177] - read_parquet_from_gcs() - Reading Parquet file from GCS: gs://miguelsiloli-housing-data/linkedin/raw/linkedin_scrap_2025-05-02.parquet
+2025-05-02 16:04:37,362 - INFO - [gcs_to_bq.py:55] - get_storage_client() - Creating storage client for project: poised-space-456813-t0
+2025-05-02 16:04:37,363 - INFO - [gcs_to_bq.py:189] - read_parquet_from_gcs() - Downloading linkedin/raw/linkedin_scrap_2025-05-02.parquet to temporary file /tmp/tmpqttxnifz.parquet
+2025-05-02 16:04:38,036 - INFO - [gcs_to_bq.py:193] - read_parquet_from_gcs() - Reading Parquet data from /tmp/tmpqttxnifz.parquet
+2025-05-02 16:04:38,084 - INFO - [gcs_to_bq.py:195] - read_parquet_from_gcs() - Successfully read Parquet file: 2301 rows
+2025-05-02 16:04:38,084 - INFO - [gcs_to_bq.py:216] - process_linkedin_job_data() - Starting transformation for 2301 raw LinkedIn job records.
+2025-05-02 16:04:38,096 - INFO - [gcs_to_bq.py:265] - process_linkedin_job_data() - Successfully transformed LinkedIn data. Resulting shape: (2301, 16)
+2025-05-02 16:04:38,155 - INFO - [gcs_to_bq.py:340] - check_existing_keys_in_bigquery() - Checking 1057 unique (job_id, ingestionDate) pairs against poised-space-456813-t0.linkedin.linkedin_jobs_staging
+2025-05-02 16:04:41,189 - WARNING - [_metadata.py:142] - ping() - Compute Engine Metadata server unavailable on attempt 1 of 3. Reason: timed out
+2025-05-02 16:04:45,280 - WARNING - [_metadata.py:142] - ping() - Compute Engine Metadata server unavailable on attempt 2 of 3. Reason: timed out
+2025-05-02 16:04:50,086 - WARNING - [_metadata.py:142] - ping() - Compute Engine Metadata server unavailable on attempt 3 of 3. Reason: timed out
+2025-05-02 16:04:50,086 - WARNING - [_default.py:362] - _get_gce_credentials() - Authentication failed using Compute Engine authentication due to unavailable metadata server.
+2025-05-02 16:04:50,086 - ERROR - [gcs_to_bq.py:385] - check_existing_keys_in_bigquery() - Error checking existing keys in BigQuery: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.
+Traceback (most recent call last):
+  File "/home/miguel/Projects/linkedin_pipeline/src/events/gcs_to_bg_sink/gcs_to_bq.py", line 346, in check_existing_keys_in_bigquery
+    bq_client = bigquery.Client(project=bq_project_id)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/client.py", line 253, in __init__
+    super(Client, self).__init__(
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/client/__init__.py", line 339, in __init__
+    Client.__init__(
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/client/__init__.py", line 196, in __init__
+    credentials, _ = google.auth.default(scopes=scopes)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/auth/_default.py", line 685, in default
+    raise exceptions.DefaultCredentialsError(_CLOUD_SDK_MISSING_CREDENTIALS)
+google.auth.exceptions.DefaultCredentialsError: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.
+2025-05-02 16:04:50,101 - ERROR - [main.py:120] - <module>() - An error occurred during the process: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.
+Traceback (most recent call last):
+  File "/home/miguel/Projects/linkedin_pipeline/src/events/gcs_to_bg_sink/main.py", line 105, in <module>
+    existing_keys = check_existing_keys_in_bigquery(transformed_data_df)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/Projects/linkedin_pipeline/src/events/gcs_to_bg_sink/gcs_to_bq.py", line 346, in check_existing_keys_in_bigquery
+    bq_client = bigquery.Client(project=bq_project_id)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/client.py", line 253, in __init__
+    super(Client, self).__init__(
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/client/__init__.py", line 339, in __init__
+    Client.__init__(
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/client/__init__.py", line 196, in __init__
+    credentials, _ = google.auth.default(scopes=scopes)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/auth/_default.py", line 685, in default
+    raise exceptions.DefaultCredentialsError(_CLOUD_SDK_MISSING_CREDENTIALS)
+google.auth.exceptions.DefaultCredentialsError: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.

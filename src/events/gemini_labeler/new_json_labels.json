@@ -1,0 +1,154 @@
+{
+    "_comment": "Schema for storing structured job description data. 'Possible Values' listed in comments are illustrative examples based on aggregated data.",
+  
+    "job_summary": {
+      "_comment": "High-level information about the role.",
+      "role_title": "Data Engineer",
+      "role_objective": "Reforçar a área de Data&AI da Deloitte...",
+      "role_seniority": "Mid-Level"
+      // Possible Values for role_seniority: ["Internship", "Junior", "Mid-Level", "Senior", "Lead", "Staff", "Principal", "Manager", "Director", "Executive", "Not Specified"]
+    },
+  
+    "company_information": {
+      "_comment": "Details about the hiring company.",
+      "company_type": "IT Consulting / System Integration"
+      // Possible Values for company_type: ["Software Product / SaaS", "E-commerce / Marketplace Platform", "Fintech", "Gaming Company / GameTech", "IT Consulting / System Integration", "IT Outsourcing / Nearshore / Dev Shop", "Managed Service Provider (MSP)", "AI / Data Science Focused", "Open Source Software Company", "Low-Code / No-Code Platform", "Cloud / IT Infrastructure Services", "Digital Services / Agency", "Tech Hub / Academy / Recruitment", "Testing / Inspection / Certification", "Banking / Financial Institution", "Healthcare / Pharma / Biotech", "Automotive / Mobility Provider", "Manufacturing / Industrial", "Logistics / Transportation", "Energy", "Telecommunications", "Engineering Services (Non-IT specific)", "Internal IT / Shared Services", "Unspecified / Generic Tech", "Not Specified / Other"]
+      ,
+      "company_values_keywords": [
+        "Inovação",
+        "Excelência",
+        "Respeito"
+        // ...etc
+      ]
+    },
+  
+    "location_and_work_model": {
+      "_comment": "Where the role is based and the work model.",
+      "specification_level": "Specific Location / Remote Status Identified"
+      // Possible Values for specification_level: ["Specific Location / Remote Status Identified", "Not Specified"]
+      ,
+      "remote_status": "Hybrid"
+      // Possible Values for remote_status: ["Fully Remote", "Remote (Region Specific)", "Hybrid", "Office-based", "Not Specified"]
+      ,
+      "flexibility": ["Flexible Schedule"]
+      // Possible Values for flexibility items: ["Flexible Schedule"]
+      ,
+      "locations": [
+        "Lisbon",
+        "Porto",
+        "Portugal"
+      ]
+      // Possible Values for locations items: Standardized City, Country, or Region names (e.g., "Lisbon", "Portugal", "EMEA", "US", "Global")
+    },
+  
+    "required_qualifications": {
+      "_comment": "Mandatory requirements for the role.",
+      "experience_years_min": 1,
+      "experience_years_max": 6,
+      "experience_description": "Experiência profissional entre 1 e 6 anos em projetos de Data",
+      "education_requirements": "Licenciatura/ Mestrado nas áreas de Engenharia Informática...",
+      "technical_skills": {
+        "_comment": "Specific technical tools, platforms, languages, and concepts.",
+        "programming_languages": {
+          "general_purpose": ["Python", "Scala", "Java"],
+          // Possible Values: ["C#", "C++", "Go (Golang)", "Java", "Kotlin", "Python", "R", "Ruby", "Rust", "Scala", "Swift"]
+          "scripting_frontend": ["Bash / Shell Scripting"],
+          // Possible Values: ["Angular", "Bash / Shell Scripting", "Groovy", "JavaScript", "PowerShell", "TypeScript"]
+          "query": ["SQL", "DAX", "Spark SQL"],
+          // Possible Values: ["DAX", "MDX", "PL/SQL", "Power Query (M)", "SQL", "Spark SQL", "T-SQL"]
+          "data_ml_libs": ["Pandas", "PySpark", "Scikit-learn", "PyTorch"],
+          // Possible Values: ["Apache Spark", "Flink", "Pandas", "PySpark", "PyTorch", "R Shiny", "Scikit-learn"] // Note: Spark/Flink also frameworks
+          "platform_runtime": [".NET Platform"],
+          // Possible Values: [".NET Platform"]
+          "configuration": ["YAML"],
+          // Possible Values: ["YAML"]
+          "other_specialized": []
+          // Possible Values: ["Lightning", "Verilog"]
+        },
+        "cloud_platforms": ["AWS", "Azure", "GCP", "Alibaba Cloud", "Snowflake", "Databricks"]
+        // Possible Values for cloud_platforms: ["AWS", "Azure", "GCP", "Alibaba Cloud", "Oracle Cloud", "IBM Cloud", "Snowflake", "Databricks", "Other", "Not Specified"]
+        ,
+        "cloud_services_tools": [
+          "AWS S3", "AWS Glue", "AWS Redshift", "AWS Lambda", "AWS EMR", "AWS SageMaker", "AWS Athena", "AWS Lake Formation", "AWS CloudWatch", "AWS ECS", "AWS RDS", "AWS Kinesis", "AWS Step Functions", "AWS SNS/SQS", "AWS Aurora",
+          "Azure Data Factory", "Azure Synapse Analytics", "Azure Databricks", "Azure Blob Storage", "Azure Data Lake Storage (ADLS)", "Azure Functions", "Azure Event Hubs", "Azure AI / ML Studio", "Azure Cosmos DB", "Azure SQL Database", "Azure Key Vault", "Azure DevOps", "Azure Logic Apps", "Azure Service Fabric", "Azure Storage Accounts", "Azure Analysis Services",
+          "Google BigQuery", "GCP Cloud Storage", "GCP Dataflow", "GCP Vertex AI", "GCP Cloud Data Fusion", "GCP BigTable",
+          "Microsoft Fabric", "Microsoft Purview", "Microsoft Power Apps", "Microsoft Power Automate",
+          "MongoDB Atlas", "Databricks Unity Catalog", "dbt Cloud", "IBM Cloud Object Storage",
+          "Cloud Functions (Generic)", "Cloud Storage (Generic)"
+        ]
+        // Possible Values: List derived from comprehensive standardized tool list focusing on cloud vendor services & specific cloud PaaS/SaaS
+        ,
+        "databases": ["SQL Server", "PostgreSQL", "NoSQL Concepts", "Azure SQL Database", "AWS RDS", "MongoDB", "ClickHouse", "Redis", "Elasticsearch", "DynamoDB"]
+        // Possible Values: ["PostgreSQL", "MySQL", "Microsoft SQL Server", "Oracle Database", "AWS RDS", "Azure SQL Database", "Google Cloud SQL", "MongoDB", "Cassandra", "Redis", "Elasticsearch", "DynamoDB", "Cosmos DB", "BigTable", "ClickHouse", "DuckDB", "HBase", "Impala", "Druid", "SQL Concepts", "NoSQL Concepts", "Other"]
+        ,
+        "data_architecture_concepts": {
+          "data_modeling": ["Dimensional Modeling (Kimball, Star/Snowflake Schemas)", "Schema Design & Evolution", "Relational Modeling (e.g., 3NF)", "Data Vault Modeling (2.0)"],
+          // Possible Values: ["Relational Modeling (e.g., 3NF)", "Dimensional Modeling (Kimball, Star/Snowflake Schemas)", "Data Vault Modeling (2.0)", "Other Modeling (e.g., Inmon)", "Normalization / Denormalization", "Schema Design & Evolution", "Conceptual/Logical/Physical Modeling", "Multidimensional Modeling"]
+          "data_storage_paradigms": ["Data Warehousing (DWH)", "Data Lake Architecture", "Lakehouse Architecture", "Specific Formats (e.g., Parquet, Delta Lake)"],
+          // Possible Values: ["Data Warehousing (DWH)", "Data Lake Architecture", "Lakehouse Architecture", "Data Mart Design", "OLAP Concepts", "Big Data Storage (e.g., HDFS)", "Relational Databases (General)", "NoSQL Databases (General)", "Specific Formats (e.g., Parquet, Delta Lake, Avro, Iceberg, Hudi)"]
+          "etl_elt_pipelines": ["ETL Design & Development", "Batch Processing", "Stream Processing / Real-time Data", "Building & Maintaining Pipelines"],
+          // Possible Values: ["ETL Design & Development", "ELT Design & Development", "Data Pipeline Orchestration & Scheduling", "Batch Processing", "Stream Processing / Real-time Data", "Data Ingestion Techniques", "Data Integration Patterns", "Data Transformation Logic", "Building & Maintaining Pipelines"]
+          "data_governance_quality": ["Data Quality Management & Measurement", "Data Cleansing Strategies", "Metadata Management", "Data Lineage Tracking", "Data Security & Access Control (e.g., Row-level)"],
+          // Possible Values: ["Data Governance Frameworks & Principles", "Data Quality Management & Measurement", "Data Cleansing Strategies", "Metadata Management", "Data Lineage Tracking", "Data Security & Access Control (e.g., Row-level)", "Data Privacy Concepts", "Data Lifecycle Management", "Master Data Management (MDM)"]
+          "architecture_patterns": ["Medallion Architecture", "Data Mesh Principles & Implementation", "Lambda Architecture", "Kappa Architecture"],
+          // Possible Values: ["Data Mesh Principles & Implementation", "Lambda Architecture", "Kappa Architecture", "Medallion Architecture", "Microservices (in Data Context)", "Distributed Systems Design", "Centralized vs. Decentralized Architectures", "Data Products Concept"]
+          "big_data_concepts": ["Big Data Fundamentals (Volume, Velocity, Variety)", "Distributed Computing Principles", "Hadoop Ecosystem Knowledge", "Scalable Data Processing"],
+          // Possible Values: ["Big Data Fundamentals (Volume, Velocity, Variety)", "Distributed Computing Principles", "Hadoop Ecosystem Knowledge", "Scalable Data Processing", "Big Data Processing Frameworks (e.g., Spark)"]
+          "cloud_data_architecture": ["Scalable Cloud Data Solutions", "Cloud-native Data Services", "Secure Cloud Data Practices"],
+          // Possible Values: ["Scalable Cloud Data Solutions", "Secure Cloud Data Practices", "Cloud Storage Options (Object, Block, etc.)", "Cloud-native Data Services", "Serverless Data Processing", "Cloud Cost Optimization"]
+          "ml_ai_data_concepts": ["Data for AI/Analytics", "ML Pipeline Infrastructure"],
+          // Possible Values: ["ML Pipeline Infrastructure", "ML Workflow Support", "Data for AI/Analytics", "Model Monitoring (Data Aspects)", "Feature Stores"]
+          "core_principles_optimization": ["Scalability Design", "Performance Tuning & Optimization", "System Design Principles"]
+          // Possible Values: ["Scalability Design", "Performance Tuning & Optimization", "System Design Principles", "Workload Management", "Data Engineering Best Practices", "Resilience & Fault Tolerance"]
+        },
+        "etl_integration_tools": ["Azure Data Factory", "AWS Glue", "dbt (Data Build Tool)", "Informatica PowerCenter / IDMC", "Talend", "Microsoft SSIS", "Airbyte", "Fivetran", "Matillion", "Boomi", "Pentaho Data Integration (PDI)", "Alteryx", "SAP Data Services", "Oracle Data Integrator (ODI)", "Wherescape", "VaultSpeed"],
+        // Possible Values: Standardized list of ETL/ELT/Integration platform/tool names
+        "data_visualization_bi_tools": ["Tableau", "Microsoft Power BI", "Looker / Looker Studio", "QlikView / Qlik Sense", "MicroStrategy", "Apache Superset", "Metabase", "Redash", "Grafana", "Kibana", "Microsoft SSRS", "Microsoft SSAS", "Power Query (Excel/Power BI)", "DAX", "LookML"],
+        // Possible Values: Standardized list of BI/Viz platform/tool names, including associated languages like DAX/LookML
+        "devops_mlops_ci_cd_tools": ["Git", "Jenkins", "Terraform", "Kubernetes", "Docker", "Azure DevOps", "GitHub Actions", "GitLab", "MLflow", "Kubeflow", "DVC (Data Version Control)", "Argo CD", "FluxCD", "Crossplane", "Datadog", "Prometheus", "SonarQube", "Control-M", "Boto3 (AWS SDK for Python)"],
+        // Possible Values: Standardized list of DevOps, MLOps, CI/CD, IaC, Monitoring tools
+        "orchestration_workflow_tools": ["Apache Airflow", "Prefect", "Dagster", "Luigi", "Temporal", "AWS Step Functions", "Azure Logic Apps"],
+        // Possible Values: Standardized list of Workflow Orchestration tools
+        "other_tools": ["Jupyter Notebooks/Lab", "Alation (Data Catalog)", "Data Cataloging Tools (General)", "Semarchy (MDM/Data Hub)", "Dataiku", "KNIME", "VS Code", "DBeaver", "Oracle SQL Developer", "Anaconda Distribution", "Feast (Feature Store)", "Snowplow (Analytics)", "Weaviate (Vector DB)", "Pinecone (Vector DB)", "FAISS (Vector Similarity Search)", "Apache SolR", "Minio (S3 Compatible Storage)", "Kerberos", "ActiveMQ", "RabbitMQ", "Apache Pulsar", "Kafka Connect", "Kafka Streams"]
+        // Possible Values: Standardized list of tools/libs/platforms not fitting neatly above (e.g., IDEs, Data Catalogs, MDM, ML Platforms, Vector DBs, Search, Messaging Queues)
+      },
+      "methodologies_practices": [
+        "Agile Principles",
+        "Scrum",
+        "DevOps Culture/Practices"
+      ]
+      // Possible Values for methodologies_practices: ["Agile Principles", "Scrum", "Kanban", "Extreme Programming (XP)", "Lean Principles", "SAFe", "LeSS", "Waterfall", "DevOps Culture/Practices", "Test-Driven Development (TDD)", "Behavior-Driven Development (BDD)", "CI/CD Practices", "A/B Testing"]
+      ,
+      "soft_skills_keywords": [
+        "Trabalho em equipa",
+        "Orientação para o cliente",
+        "Comunicação",
+        "Inglês"
+        // ...etc
+      ]
+    },
+  
+    "preferred_qualifications": {
+      "_comment": "Nice-to-have skills and qualifications.",
+      "skills_keywords": ["Francês", "Alemão", "Certificações"],
+      "other_notes": ""
+    },
+  
+    "role_context": {
+       "_comment": "Information about the role's interactions and scope.",
+       "collaboration_with": ["Stakeholders", "Colegas da rede Deloitte", "Equipas técnicas e funcionais"],
+       "team_structure": "Integração nos centros de excelência e comunidade de Data da Deloitte...",
+       "project_scope": "Variados e complexos projetos de transformação, nacionais e internacionais.",
+       "key_responsibilities": [
+          "Desenho e implementação de Arquiteturas de Dados escaláveis...",
+          "Extrair, transformar e carregar (ETL) grandes volumes de dados...",
+          // ...etc
+       ]
+    },
+  
+    "benefits": {
+      "_comment": "Perks and benefits offered.",
+      "training_development": "Plano de desenvolvimento de carreira personalizado...",
+      "other_benefits": []
+    }
+  }

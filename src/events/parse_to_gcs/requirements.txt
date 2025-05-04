@@ -1,0 +1,8 @@
+pandas
+beautifulsoup4
+google-cloud-storage
+google-oauth2
+python-dotenv
+prefect
+lxml
+pyarrow

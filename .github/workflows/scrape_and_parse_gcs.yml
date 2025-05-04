@@ -1,0 +1,71 @@
+name: Scrape and Parse to GCS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
+
+      - name: Install scraper dependencies
+        run: pip install -r src/events/linkedin_scraper/requirements.txt
+
+      - name: Install parser dependencies
+        run: pip install -r src/events/parse_to_gcs/requirements.txt
+
+      - name: Create .env file from secrets
+        run: |
+          echo "TYPE=${{ secrets.TYPE }}" >> .env
+          echo "PROJECT_ID=${{ secrets.PROJECT_ID }}" >> .env
+          echo "PRIVATE_KEY_ID=${{ secrets.PRIVATE_KEY_ID }}" >> .env
+          echo "PRIVATE_KEY=${{ secrets.PRIVATE_KEY }}" >> .env
+          echo "CLIENT_EMAIL=${{ secrets.CLIENT_EMAIL }}" >> .env
+          echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> .env
+          echo "AUTH_URI=${{ secrets.AUTH_URI }}" >> .env
+          echo "TOKEN_URI=${{ secrets.TOKEN_URI }}" >> .env
+          echo "AUTH_PROVIDER_X509_CERT_URL=${{ secrets.AUTH_PROVIDER_X509_CERT_URL }}" >> .env
+          echo "CLIENT_X509_CERT_URL=${{ secrets.CLIENT_X509_CERT_URL }}" >> .env
+          echo "UNIVERSE_DOMAIN=${{ secrets.UNIVERSE_DOMAIN }}" >> .env
+          echo "GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }}" >> .env
+          echo "GCP_REGION=${{ secrets.GCP_REGION }}" >> .env
+          echo "GCS_BUCKET_NAME=${{ secrets.GCS_BUCKET_NAME }}" >> .env
+          echo "GCS_SUBFOLDER_PATH=${{ secrets.GCS_SUBFOLDER_PATH }}" >> .env
+          echo "LINKEDIN_BQ_PROJECT_ID=${{ secrets.LINKEDIN_BQ_PROJECT_ID }}" >> .env
+          echo "LINKEDIN_BQ_DATASET_ID=${{ secrets.LINKEDIN_BQ_DATASET_ID }}" >> .env
+          echo "LINKEDIN_BQ_TABLE_ID=${{ secrets.LINKEDIN_BQ_TABLE_ID }}" >> .env
+          echo "BQ_WRITE_DISPOSITION=${{ secrets.BQ_WRITE_DISPOSITION }}" >> .env
+          echo "BQ_CREATE_DISPOSITION=${{ secrets.BQ_CREATE_DISPOSITION }}" >> .env
+          echo "BQ_SCHEMA_UPDATE_OPTIONS=${{ secrets.BQ_SCHEMA_UPDATE_OPTIONS }}" >> .env
+          echo "LOG_LEVEL=${{ secrets.LOG_LEVEL }}" >> .env
+          echo "PREFECT_API_KEY=${{ secrets.PREFECT_API_KEY }}" >> .env
+          echo "PREFECT_API_URL=${{ secrets.PREFECT_API_URL }}" >> .env
+          echo "PREFECT_API_DATABASE_CONNECTION_URL=${{ secrets.PREFECT_API_DATABASE_CONNECTION_URL }}" >> .env
+          echo "PREFECT_API_DATABASE_CONNECT_ARGS=${{ secrets.PREFECT_API_DATABASE_CONNECT_ARGS }}" >> .env
+          echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" >> .env
+          echo "LINKEDIN_EMAIL=${{ secrets.LINKEDIN_EMAIL }}" >> .env
+          echo "LINKEDIN_PASSWORD=${{ secrets.LINKEDIN_PASSWORD }}" >> .env
+          echo "LI_AT_COOKIE=${{ secrets.LI_AT_COOKIE }}" >> .env
+          echo "SEARCH_KEYWORDS=${{ secrets.SEARCH_KEYWORDS }}" >> .env
+          echo "LOCATION=${{ secrets.LOCATION }}" >> .env
+          echo "OUTPUT_DIR=${{ secrets.OUTPUT_DIR }}" >> .env
+          echo "MAX_PAGES_TO_SCRAPE=${{ secrets.MAX_PAGES_TO_SCRAPE }}" >> .env
+          echo "PAGE_LOAD_TIMEOUT=${{ secrets.PAGE_LOAD_TIMEOUT }}" >> .env
+          echo "INTERACTION_DELAY=${{ secrets.INTERACTION_DELAY }}" >> .env
+          echo "SCROLL_PAUSES_WITHIN_PAGE=${{ secrets.SCROLL_PAUSES_WITHIN_PAGE }}" >> .env
+          echo "DELAY_BETWEEN_SCROLLS=${{ secrets.DELAY_BETWEEN_SCROLLS }}" >> .env
+
+      - name: Run linkedin_scraper main.py
+        run: python src/events/linkedin_scraper/main.py
+
+      - name: Run parse_to_gcs main.py
+        run: python src/events/parse_to_gcs/main.py

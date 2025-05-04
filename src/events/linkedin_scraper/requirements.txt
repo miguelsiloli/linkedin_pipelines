@@ -1,0 +1,7 @@
+selenium
+prefect
+python-dotenv
+pandas
+beautifulsoup4
+requests
+lxml
