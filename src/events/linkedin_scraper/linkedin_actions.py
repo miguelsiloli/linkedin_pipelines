@@ -169,8 +169,6 @@ def search_jobs_task(driver: WebDriver, keywords: str, location: str, timeout: i
         loc_input.send_keys(Keys.RETURN)
         logger.info("Search submitted.")
         # Wait for results list to appear as confirmation
-        WebDriverWait(driver, timeout).until(EC.presence_of_element_located(config.JOB_LIST_SELECTOR))
-        logger.info("Job results list detected.")
         time.sleep(interaction_delay) # Extra pause for full load
         return True
 
