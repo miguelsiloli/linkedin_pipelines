@@ -8,7 +8,7 @@ on:
     - cron: '0 6 * * *'
   workflow_dispatch:
 jobs:
-  deploy: # Consider renaming this job to something more descriptive like "run-pipeline"
+  deploy: 
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -37,13 +37,11 @@ jobs:
         run: pip install -r src/events/gcs_to_bg_sink/requirements.txt
 
       - name: Install scraper dependencies
-        run: pip install -r src/events/linkedin_scraper/requirements.txt # Ensure webdriver-manager is in here
+        run: pip install -r src/events/linkedin_scraper/requirements.txt 
 
       - name: Install parser dependencies
         run: pip install -r src/events/parse_to_gcs/requirements.txt
 
-      # Note: Your .env creation has two 'run' steps. The second one with 'cat <<EOL' is generally preferred.
-      # I'll keep the second one as it's more robust for multi-line secrets like PRIVATE_KEY.
       - name: Create .env file from secrets
         shell: bash
         run: |
