@@ -1,0 +1,163 @@
+/* assets/style.css */
+
+/* --- Keep existing styles for body, metrics, tabs, etc. --- */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+.metrics-container { display: flex; justify-content: space-around; margin-bottom: 20px; flex-wrap: wrap; padding: 0 10px; }
+.metric-card { border: 1px solid #ddd; border-radius: 8px; padding: 15px 20px; text-align: center; background-color: #ffffff; min-width: 160px; margin: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); flex-grow: 1; flex-basis: 150px; }
+.metric-card h3 { margin-top: 0; margin-bottom: 8px; font-size: 1em; color: #555; font-weight: normal; }
+.metric-card p { font-size: 1.8em; font-weight: bold; color: #007bff; margin-bottom: 0; }
+.chart-row-tab { display: flex; flex-wrap: wrap; justify-content: space-around; gap: 15px; margin-top: 10px; }
+.chart-row-tab .dash-graph { background-color: #ffffff; border-radius: 5px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); padding: 10px; box-sizing: border-box; min-width: 350px; flex-grow: 1; width: 48%; }
+
+/* --- Navbar Styling --- */
+.navbar {
+    background-color: #f8f9fa; /* Light grey background */
+    padding: 10px 20px;
+    border-bottom: 1px solid #dee2e6; /* Subtle border */
+    margin-bottom: 15px;
+}
+.nav-link {
+    margin-right: 15px;
+    text-decoration: none;
+    color: #007bff; /* Bootstrap primary blue */
+    font-weight: 500;
+}
+.nav-link:hover {
+    text-decoration: underline;
+    color: #0056b3; /* Darker blue on hover */
+}
+
+/* --- Job Browser Page Styling --- */
+.job-browser-container {
+    display: flex;
+    flex-direction: row;
+    height: calc(100vh - 150px); /* Adjust height based on navbar/footer/padding */
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.job-list-pane {
+    flex: 0 0 350px; /* Fixed width for the list pane */
+    border-right: 1px solid #ccc;
+    overflow-y: auto; /* Make list scrollable */
+    padding: 10px;
+    background-color: #fdfdfd;
+}
+
+.job-list-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.job-list-item:hover {
+    background-color: #f0f0f0;
+}
+.job-list-item h5 { /* Style for job title in list */
+    margin-bottom: 3px;
+    color: #333;
+    font-size: 1.05em;
+}
+.job-list-link {
+    text-decoration: none;
+    color: inherit; /* Inherit color */
+}
+
+
+.job-detail-pane {
+    flex-grow: 1; /* Allow detail pane to take remaining space */
+    overflow-y: auto; /* Scroll if content overflows */
+    /* padding: 15px; No - padding added in layout definition */
+    background-color: #ffffff;
+}
+
+/* --- Job Detail Inner Layout --- */
+.job-detail-inner-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px; /* Space between description and structured info */
+}
+
+.job-description-container {
+    flex: 1 1 60%; /* Takes slightly more space */
+    min-width: 300px;
+}
+.job-description-markdown {
+    font-size: 0.95em;
+    line-height: 1.6;
+}
+.job-description-markdown p {
+    margin-bottom: 1em;
+}
+.job-description-markdown h1,
+.job-description-markdown h2,
+.job-description-markdown h3,
+.job-description-markdown h4 {
+    margin-top: 1.2em;
+    margin-bottom: 0.5em;
+}
+.job-description-markdown ul,
+.job-description-markdown ol {
+    margin-left: 20px;
+    margin-bottom: 1em;
+}
+
+.structured-info-container {
+    flex: 1 1 40%; /* Takes slightly less space */
+    min-width: 250px;
+    border-left: 1px solid #eee;
+    padding-left: 20px;
+    font-size: 0.9em;
+}
+.structured-info-container h4 {
+    font-size: 1.1em; /* Make headings slightly smaller */
+}
+.structured-info-container p {
+    margin-bottom: 0.6em;
+    line-height: 1.5;
+}
+.structured-info-container strong {
+     display: inline-block; /* Or block if preferred */
+     /* min-width: 120px; */ /* Optional: Align labels */
+     margin-right: 5px;
+     color: #444;
+}
+.structured-info-container ul {
+    padding-left: 20px; /* Indent list items */
+    list-style: disc;
+}
+
+
+/* --- Responsive adjustments --- */
+@media (max-width: 992px) { /* Adjust breakpoint */
+    .job-browser-container {
+        flex-direction: column; /* Stack panes vertically */
+        height: auto; /* Allow height to adjust */
+    }
+    .job-list-pane {
+        flex: 0 0 auto; /* Reset flex basis */
+        max-height: 40vh; /* Limit height when stacked */
+        border-right: none;
+        border-bottom: 1px solid #ccc;
+    }
+    .job-detail-inner-container {
+        flex-direction: column; /* Stack description and info vertically */
+    }
+     .structured-info-container {
+        border-left: none;
+        padding-left: 0;
+        margin-top: 20px;
+        border-top: 1px solid #eee;
+        padding-top: 20px;
+    }
+}
+
+@media (max-width: 800px) {
+    .chart-row-tab .dash-graph { min-width: 90%; width: 95%; }
+}
+/* Add other responsive styles as needed */
