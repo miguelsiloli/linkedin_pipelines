@@ -53,14 +53,6 @@ def setup_driver() -> webdriver.Chrome: # Or ChromeWebDriver
         # Log all arguments being passed to Chrome for debugging
         logger.info(f"Final Chrome options arguments: {options.arguments}")
 
-        # Suppress webdriver-manager noise by redirecting its log output
-        # Note: ChromeDriverManager().install() can sometimes be noisy.
-        # The log_output=os.devnull on the service is for the chromedriver *process*, not webdriver-manager.
-        # To truly silence webdriver-manager, you might need to configure its own logger if it's too verbose.
-        # For now, this setup is standard.
-        webdriver_manager_logger = logging.getLogger('webdriver_manager') # Get webdriver-manager logger
-        webdriver_manager_logger.setLevel(logging.ERROR) # Set its level to ERROR to suppress INFO/DEBUG
-
         service = ChromeService(executable_path=ChromeDriverManager().install(), log_output=os.devnull)
         
         driver_instance = webdriver.Chrome(service=service, options=options)
