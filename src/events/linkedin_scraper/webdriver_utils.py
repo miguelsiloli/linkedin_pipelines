@@ -23,10 +23,10 @@ def setup_driver() -> webdriver.Chrome: # Or ChromeWebDriver
         options = ChromeOptions() # Use the imported alias
 
         # --- ESSENTIAL CI/HEADLESS OPTIONS ---
-        options.add_argument("--headless=new") # Modern headless mode
+        # options.add_argument("--headless=new") # Modern headless mode
         options.add_argument("--no-sandbox") # CRITICAL for CI
         options.add_argument("--disable-dev-shm-usage") # CRITICAL for CI
-        options.add_argument("--disable-gpu") # Recommended for headless
+        # options.add_argument("--disable-gpu") # Recommended for headless
         options.add_argument("--window-size=1920,1080") # Set a consistent window size
         options.add_argument("--disable-extensions")
         options.add_argument("--disable-infobars")
