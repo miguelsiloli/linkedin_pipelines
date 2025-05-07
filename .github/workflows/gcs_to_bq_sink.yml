@@ -22,25 +22,8 @@ jobs:
       - name: Upgrade pip, setuptools, and wheel
         run: python -m pip install --upgrade pip setuptools wheel
 
-      # --- ADD CHROME INSTALLATION STEPS HERE ---
-      - name: Install Google Chrome
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
-
-      # Optional: Verify Chrome installation (good for debugging)
-      - name: Check Chrome version
-        run: google-chrome --version
-      # --- END OF CHROME INSTALLATION STEPS ---
-
       - name: Install dependencies
         run: pip install -r src/events/gcs_to_bg_sink/requirements.txt
-
-      - name: Install scraper dependencies
-        run: pip install -r src/events/linkedin_scraper/requirements.txt # Ensure webdriver-manager is in here
-
-      - name: Install parser dependencies
-        run: pip install -r src/events/parse_to_gcs/requirements.txt
 
       # Note: Your .env creation has two 'run' steps. The second one with 'cat <<EOL' is generally preferred.
       # I'll keep the second one as it's more robust for multi-line secrets like PRIVATE_KEY.
@@ -88,9 +71,6 @@ jobs:
           DELAY_BETWEEN_SCROLLS=${{ secrets.DELAY_BETWEEN_SCROLLS }}
           EOL
           chmod 600 .env # Restrict permissions
-
-      - name: Run linkedin_scraper main.py
-        run: python src/events/linkedin_scraper/main.py
 
       - name: Run gcs_to_bq.py
         run: python src/events/gcs_to_bg_sink/gcs_to_bq.py

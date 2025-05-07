@@ -8,7 +8,7 @@ on:
     - cron: '0 6 * * *'
   workflow_dispatch:
 jobs:
-  deploy:
+  deploy: # Consider renaming this job to something more descriptive like "run-pipeline"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -19,55 +19,78 @@ jobs:
         with:
           python-version: '3.10.6'
 
+      - name: Upgrade pip, setuptools, and wheel
+        run: python -m pip install --upgrade pip setuptools wheel
+
+      # --- ADD CHROME INSTALLATION STEPS HERE ---
+      - name: Install Google Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+
+      # Optional: Verify Chrome installation (good for debugging)
+      - name: Check Chrome version
+        run: google-chrome --version
+      # --- END OF CHROME INSTALLATION STEPS ---
+
+      - name: Install dependencies
+        run: pip install -r src/events/gcs_to_bg_sink/requirements.txt
+
       - name: Install scraper dependencies
-        run: pip install -r src/events/linkedin_scraper/requirements.txt
+        run: pip install -r src/events/linkedin_scraper/requirements.txt # Ensure webdriver-manager is in here
 
       - name: Install parser dependencies
         run: pip install -r src/events/parse_to_gcs/requirements.txt
 
+      # Note: Your .env creation has two 'run' steps. The second one with 'cat <<EOL' is generally preferred.
+      # I'll keep the second one as it's more robust for multi-line secrets like PRIVATE_KEY.
       - name: Create .env file from secrets
+        shell: bash
         run: |
-          echo "TYPE=${{ secrets.TYPE }}" >> .env
-          echo "PROJECT_ID=${{ secrets.PROJECT_ID }}" >> .env
-          echo "PRIVATE_KEY_ID=${{ secrets.PRIVATE_KEY_ID }}" >> .env
-          echo "PRIVATE_KEY=${{ secrets.PRIVATE_KEY }}" >> .env
-          echo "CLIENT_EMAIL=${{ secrets.CLIENT_EMAIL }}" >> .env
-          echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> .env
-          echo "AUTH_URI=${{ secrets.AUTH_URI }}" >> .env
-          echo "TOKEN_URI=${{ secrets.TOKEN_URI }}" >> .env
-          echo "AUTH_PROVIDER_X509_CERT_URL=${{ secrets.AUTH_PROVIDER_X509_CERT_URL }}" >> .env
-          echo "CLIENT_X509_CERT_URL=${{ secrets.CLIENT_X509_CERT_URL }}" >> .env
-          echo "UNIVERSE_DOMAIN=${{ secrets.UNIVERSE_DOMAIN }}" >> .env
-          echo "GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }}" >> .env
-          echo "GCP_REGION=${{ secrets.GCP_REGION }}" >> .env
-          echo "GCS_BUCKET_NAME=${{ secrets.GCS_BUCKET_NAME }}" >> .env
-          echo "GCS_SUBFOLDER_PATH=${{ secrets.GCS_SUBFOLDER_PATH }}" >> .env
-          echo "LINKEDIN_BQ_PROJECT_ID=${{ secrets.LINKEDIN_BQ_PROJECT_ID }}" >> .env
-          echo "LINKEDIN_BQ_DATASET_ID=${{ secrets.LINKEDIN_BQ_DATASET_ID }}" >> .env
-          echo "LINKEDIN_BQ_TABLE_ID=${{ secrets.LINKEDIN_BQ_TABLE_ID }}" >> .env
-          echo "BQ_WRITE_DISPOSITION=${{ secrets.BQ_WRITE_DISPOSITION }}" >> .env
-          echo "BQ_CREATE_DISPOSITION=${{ secrets.BQ_CREATE_DISPOSITION }}" >> .env
-          echo "BQ_SCHEMA_UPDATE_OPTIONS=${{ secrets.BQ_SCHEMA_UPDATE_OPTIONS }}" >> .env
-          echo "LOG_LEVEL=${{ secrets.LOG_LEVEL }}" >> .env
-          echo "PREFECT_API_KEY=${{ secrets.PREFECT_API_KEY }}" >> .env
-          echo "PREFECT_API_URL=${{ secrets.PREFECT_API_URL }}" >> .env
-          echo "PREFECT_API_DATABASE_CONNECTION_URL=${{ secrets.PREFECT_API_DATABASE_CONNECTION_URL }}" >> .env
-          echo "PREFECT_API_DATABASE_CONNECT_ARGS=${{ secrets.PREFECT_API_DATABASE_CONNECT_ARGS }}" >> .env
-          echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" >> .env
-          echo "LINKEDIN_EMAIL=${{ secrets.LINKEDIN_EMAIL }}" >> .env
-          echo "LINKEDIN_PASSWORD=${{ secrets.LINKEDIN_PASSWORD }}" >> .env
-          echo "LI_AT_COOKIE=${{ secrets.LI_AT_COOKIE }}" >> .env
-          echo "SEARCH_KEYWORDS=${{ secrets.SEARCH_KEYWORDS }}" >> .env
-          echo "LOCATION=${{ secrets.LOCATION }}" >> .env
-          echo "OUTPUT_DIR=${{ secrets.OUTPUT_DIR }}" >> .env
-          echo "MAX_PAGES_TO_SCRAPE=${{ secrets.MAX_PAGES_TO_SCRAPE }}" >> .env
-          echo "PAGE_LOAD_TIMEOUT=${{ secrets.PAGE_LOAD_TIMEOUT }}" >> .env
-          echo "INTERACTION_DELAY=${{ secrets.INTERACTION_DELAY }}" >> .env
-          echo "SCROLL_PAUSES_WITHIN_PAGE=${{ secrets.SCROLL_PAUSES_WITHIN_PAGE }}" >> .env
-          echo "DELAY_BETWEEN_SCROLLS=${{ secrets.DELAY_BETWEEN_SCROLLS }}" >> .env
+          cat <<EOL > .env
+          TYPE=${{ secrets.TYPE }}
+          PROJECT_ID=${{ secrets.PROJECT_ID }}
+          PRIVATE_KEY_ID=${{ secrets.PRIVATE_KEY_ID }}
+          PRIVATE_KEY='${{ secrets.PRIVATE_KEY }}' # Ensure private key is quoted
+          CLIENT_EMAIL=${{ secrets.CLIENT_EMAIL }}
+          CLIENT_ID=${{ secrets.CLIENT_ID }}
+          AUTH_URI=${{ secrets.AUTH_URI }}
+          TOKEN_URI=${{ secrets.TOKEN_URI }}
+          AUTH_PROVIDER_X509_CERT_URL=${{ secrets.AUTH_PROVIDER_X509_CERT_URL }}
+          CLIENT_X509_CERT_URL=${{ secrets.CLIENT_X509_CERT_URL }}
+          UNIVERSE_DOMAIN=${{ secrets.UNIVERSE_DOMAIN }}
+          GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }}
+          GCP_REGION=${{ secrets.GCP_REGION }}
+          GCS_BUCKET_NAME=${{ secrets.GCS_BUCKET_NAME }}
+          GCS_SUBFOLDER_PATH=${{ secrets.GCS_SUBFOLDER_PATH }}
+          LINKEDIN_BQ_PROJECT_ID=${{ secrets.LINKEDIN_BQ_PROJECT_ID }}
+          LINKEDIN_BQ_DATASET_ID=${{ secrets.LINKEDIN_BQ_DATASET_ID }}
+          LINKEDIN_BQ_TABLE_ID=${{ secrets.LINKEDIN_BQ_TABLE_ID }}
+          BQ_WRITE_DISPOSITION=${{ secrets.BQ_WRITE_DISPOSITION }}
+          BQ_CREATE_DISPOSITION=${{ secrets.BQ_CREATE_DISPOSITION }}
+          BQ_SCHEMA_UPDATE_OPTIONS=${{ secrets.BQ_SCHEMA_UPDATE_OPTIONS }}
+          LOG_LEVEL=${{ secrets.LOG_LEVEL }}
+          PREFECT_API_KEY=${{ secrets.PREFECT_API_KEY }}
+          PREFECT_API_URL=${{ secrets.PREFECT_API_URL }}
+          PREFECT_API_DATABASE_CONNECTION_URL=${{ secrets.PREFECT_API_DATABASE_CONNECTION_URL }}
+          PREFECT_API_DATABASE_CONNECT_ARGS=${{ secrets.PREFECT_API_DATABASE_CONNECT_ARGS }}
+          GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
+          LINKEDIN_EMAIL=${{ secrets.LINKEDIN_EMAIL }}
+          LINKEDIN_PASSWORD=${{ secrets.LINKEDIN_PASSWORD }}
+          LI_AT_COOKIE=${{ secrets.LI_AT_COOKIE }}
+          SEARCH_KEYWORDS=${{ secrets.SEARCH_KEYWORDS }}
+          LOCATION=${{ secrets.LOCATION }}
+          OUTPUT_DIR=${{ secrets.OUTPUT_DIR }}
+          MAX_PAGES_TO_SCRAPE=${{ secrets.MAX_PAGES_TO_SCRAPE }}
+          PAGE_LOAD_TIMEOUT=${{ secrets.PAGE_LOAD_TIMEOUT }}
+          INTERACTION_DELAY=${{ secrets.INTERACTION_DELAY }}
+          SCROLL_PAUSES_WITHIN_PAGE=${{ secrets.SCROLL_PAUSES_WITHIN_PAGE }}
+          DELAY_BETWEEN_SCROLLS=${{ secrets.DELAY_BETWEEN_SCROLLS }}
+          EOL
+          chmod 600 .env # Restrict permissions
 
       - name: Run linkedin_scraper main.py
         run: python src/events/linkedin_scraper/main.py
 
-      - name: Run parse_to_gcs main.py
-        run: python src/events/parse_to_gcs/main.py
+      - name: Run gcs_to_bq.py
+        run: python src/events/gcs_to_bg_sink/gcs_to_bq.py
