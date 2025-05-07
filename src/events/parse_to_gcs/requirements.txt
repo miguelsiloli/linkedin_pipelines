@@ -6,3 +6,4 @@ python-dotenv
 prefect
 lxml
 pyarrow
+webdriver_manager
