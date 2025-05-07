@@ -25,6 +25,12 @@ jobs:
       - name: Install dependencies
         run: pip install -r src/events/gcs_to_bg_sink/requirements.txt
 
+      - name: Install scraper dependencies
+        run: pip install -r src/events/linkedin_scraper/requirements.txt
+
+      - name: Install parser dependencies
+        run: pip install -r src/events/parse_to_gcs/requirements.txt
+
       - name: Create .env file from secrets
         run: |
           echo "TYPE=${{ secrets.TYPE }}" >> .env
@@ -110,6 +116,9 @@ jobs:
           DELAY_BETWEEN_SCROLLS=${{ secrets.DELAY_BETWEEN_SCROLLS }}
           EOL
           chmod 600 .env # Restrict permissions
+
+      - name: Run linkedin_scraper main.py
+        run: python src/events/linkedin_scraper/main.py
 
       - name: Run gcs_to_bq.py
         run: python src/events/gcs_to_bg_sink/gcs_to_bq.py

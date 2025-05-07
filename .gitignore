@@ -6,3 +6,5 @@ githubkeygen
 githubkeygen.pub
 .env
 linkedin_job_pages_prefect_env
+.venv
+src/linkedin_schema
