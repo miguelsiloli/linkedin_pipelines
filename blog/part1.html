@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting the Market: Using Foundational Models to Extract Career Insights</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary: #3d5a80;
+            --primary-light: #98c1d9;
+            --secondary: #ee6c4d;
+            --secondary-light: #f8d0c5;
+            --success: #20c997;
+            --danger: #dc3545;
+            --danger-light: #f8d7da;
+            --warning: #ffc107;
+            --warning-light: #fff3cd;
+            --light-bg: #f7f9fb;
+            --dark-bg: #293241;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-bg);
+            font-size: 14px;
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 1.5rem 0;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card {
+            height: 100%;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .card-left {
+            border-top-color: var(--primary);
+        }
+        
+        .card-middle {
+            border-top-color: var(--secondary);
+        }
+        
+        .card-right {
+            border-top-color: var(--success);
+        }
+        
+        .card-header {
+            background-color: white;
+            border-bottom: 2px solid #eef2f7;
+            position: relative;
+            padding: 0.75rem 1.25rem;
+        }
+        
+        .card-header::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 60px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .card-body {
+            padding: 1rem;
+        }
+        
+        .tech-badge {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            border-radius: 50px;
+            padding: 0.35rem 0.75rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        .tech-badge:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .benefit-item {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            background-color: rgba(61, 90, 128, 0.05);
+            transition: all 0.2s ease;
+        }
+        
+        .benefit-item:hover {
+            background-color: rgba(61, 90, 128, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .benefit-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-right: 1rem;
+        }
+        
+        .section-accent {
+            background-color: rgba(61, 90, 128, 0.05);
+            border-radius: 0.375rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary);
+        }
+        
+        strong {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+        }
+        
+        /* Code block styling */
+        pre {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 0.375rem;
+            border-left: 4px solid var(--secondary);
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            overflow-x: auto;
+        }
+        
+        /* Mermaid overrides for better visibility */
+        .mermaid {
+            width: 100%;
+            max-width: 100%;
+            background-color: white;
+            padding: 1rem;
+            border-radius: 0.375rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .mermaid svg {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Pipeline steps */
+        .pipeline-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+            background-color: rgba(61, 90, 128, 0.05);
+            transition: all 0.2s ease;
+        }
+        
+        .pipeline-step:hover {
+            background-color: rgba(61, 90, 128, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            font-weight: bold;
+            margin-right: 0.75rem;
+            font-size: 0.8rem;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.1rem;
+        }
+        
+        /* Challenges list */
+        .challenges-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .challenge-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+        
+        .challenge-icon {
+            color: var(--secondary);
+            margin-right: 0.5rem;
+            min-width: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid #e9ecef;
+        }
+        
+        th {
+            background-color: var(--primary-light);
+            color: var(--dark-bg);
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: rgba(61, 90, 128, 0.05);
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        /* Image placeholders */
+        .img-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: 600;
+            border-radius: 0.375rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 991px) {
+            .col-card {
+                margin-bottom: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <div class="container text-center">
+            <h1 class="display-5 fw-bold">Meeting the Market</h1>
+            <p class="lead">Using Foundational Models to Extract Career Guiding Insights from LinkedIn Listings</p>
+        </div>
+    </header>
+
+    <div class="container-fluid px-4">
+        <div class="row g-4">
+            <!-- Left Column -->
+            <div class="col-lg-4 col-md-12 col-card">
+                <div class="card card-left h-100">
+                    <div class="card-header">
+                        <h2 class="h4 mb-0">Introduction & Challenge</h2>
+                    </div>
+                    <div class="card-body py-3">
+                        <div class="section-accent p-2 rounded mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-question-circle-fill text-primary me-2" style="font-size: 1.1rem;"></i>
+                                <p class="mb-0 small fw-bold">As a junior developer, how can I optimize my specialization path based on the assumption that not all skills are equally valuable?</p>
+                            </div>
+                        </div>
+                        
+                        <p>This project addresses the challenge of navigating today's complex job market by leveraging large language models to extract actionable insights from LinkedIn job listings.</p>
+                        
+                        <div class="row row-cols-1 row-cols-md-2 g-2 mb-3">
+                            <div class="col">
+                                <div class="d-flex align-items-start">
+                                    <i class="bi bi-search text-primary me-2"></i>
+                                    <div class="small"><strong>Market Navigation:</strong> Understanding job requirements</div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex align-items-start">
+                                    <i class="bi bi-award text-primary me-2"></i>
+                                    <div class="small"><strong>Skill Prioritization:</strong> Identifying valuable skills</div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex align-items-start">
+                                    <i class="bi bi-graph-up-arrow text-primary me-2"></i>
+                                    <div class="small"><strong>Career Planning:</strong> Optimizing learning path</div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex align-items-start">
+                                    <i class="bi bi-lightbulb text-primary me-2"></i>
+                                    <div class="small"><strong>Opportunity Spotting:</strong> Finding real demands</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="border-top pt-1 mb-1">
+                            <h6 class="d-flex align-items-center mb-1">
+                                <i class="bi bi-rocket-takeoff-fill text-secondary me-1"></i>
+                                Our Solution Approach
+                            </h6>
+                        </div>
+                        
+                        <div class="row g-1 mb-2">
+                            <div class="col-6">
+                                <div class="pipeline-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title"><i class="bi bi-database-fill text-primary"></i> Data Collection</div>
+                                        <p class="small mb-0">Automated LinkedIn scraping</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="pipeline-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title"><i class="bi bi-gear-fill text-primary"></i> Transformation</div>
+                                        <p class="small mb-0">Cleaning and structuring</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="pipeline-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title"><i class="bi bi-robot text-primary"></i> LLM Fine-tuning</div>
+                                        <p class="small mb-0">Qwen3.0 1.7B model</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="pipeline-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <div class="step-title"><i class="bi bi-bar-chart-fill text-primary"></i> Insights</div>
+                                        <p class="small mb-0">Career guidance extraction</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3 class="h5 mt-3 mb-2">Pipeline Components</h3>
+                        
+                        <div class="tech-stack mb-3">
+                            <span class="tech-badge">GitHub Actions</span>
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Selenium</span>
+                            <span class="tech-badge">GCP</span>
+                            <span class="tech-badge">BigQuery</span>
+                            <span class="tech-badge">Dataform</span>
+                            <span class="tech-badge">Parquet</span>
+                        </div>
+                        
+                        <table class="mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Component</th>
+                                    <th>Technology</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Runner Environment</strong></td>
+                                    <td>GitHub Cloud</td>
+                                    <td>Executing pipeline processes</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Orchestrator</strong></td>
+                                    <td>GitHub Actions</td>
+                                    <td>Scheduling pipeline executions</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Web Scraping</strong></td>
+                                    <td>Python + Selenium</td>
+                                    <td>Extract data from LinkedIn</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Object Storage</strong></td>
+                                    <td>Google Cloud Storage</td>
+                                    <td>Staging raw scraped data</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Data Warehousing</strong></td>
+                                    <td>Google BigQuery</td>
+                                    <td>Structured job data storage</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Training Hardware</strong></td>
+                                    <td>NVIDIA P100</td>
+                                    <td>GPU-accelerated ML training</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Middle Column -->
+            <div class="col-lg-4 col-md-12 col-card">
+                <div class="card card-middle h-100">
+                    <div class="card-header">
+                        <h2 class="h4 mb-0">Data Pipeline Architecture</h2>
+                    </div>
+                    <div class="card-body py-2">
+                        <div class="mermaid">
+graph TD
+    subgraph "External Sources & CI/CD (GitHub)"
+        LI[("LinkedIn.com")]
+        GHS[("GitHub Secrets")]
+        GHA[("GitHub Actions Runner")]
+    end
+
+    GHS -->|Provides Secrets| GHA
+    LI -- "1. Scraped By" --> GHA_SCRAPER["GHA: Scraper Script<br/>(Python + Selenium)"]
+    GHA_SCRAPER -->|Outputs| GHA_ENV_FILES[("Local .env & Scraped Files")]
+
+    subgraph "Data Staging & Loading (GCP)"
+        GCS_RAW[/"GCS Bucket<br/>(Raw/Parsed Listings)"/]
+        GHA_LOADER["GHA: GCS to BQ Script"]
+    end
+
+    GHA_ENV_FILES -- "2. Uploads Raw/Parsed Data" --> GCS_RAW
+    GCS_RAW -- "3. Read by" --> GHA_LOADER
+    
+    subgraph "Data Processing & Warehousing (GCP)"
+        BQ_STAGING[("BigQuery<br/>(Staging Tables)")]
+        DATAFORM[("Dataform<br/>(SQL Transformations)")]
+        BQ_MODEL_READY[("BigQuery<br/>(ML-Ready Tables)")]
+    end
+
+    GHA_LOADER -- "4. Loads into" --> BQ_STAGING
+    BQ_STAGING -- "5. Processed by" --> DATAFORM
+    DATAFORM -- "6. Creates/Updates" --> BQ_MODEL_READY
+    
+    style LI fill:#f0f0f0,stroke:#666
+    style GHS fill:#f0f0f0,stroke:#666
+    style GHA fill:#f0f0f0,stroke:#666
+    style GHA_SCRAPER fill:#f0f0f0,stroke:#666
+    style GHA_ENV_FILES fill:#f0f0f0,stroke:#666
+    style GHA_LOADER fill:#f0f0f0,stroke:#666
+    style GCS_RAW fill:#98c1d9,stroke:#3d5a80
+    style BQ_STAGING fill:#98c1d9,stroke:#3d5a80
+    style DATAFORM fill:#98c1d9,stroke:#3d5a80
+    style BQ_MODEL_READY fill:#98c1d9,stroke:#3d5a80
+                        </div>
+                        
+                        <h4 class="h6 mt-3 mb-2">Phase 1: Scraping and Initial Storage</h4>
+                        <p class="small">The first major step is getting the raw job data from LinkedIn. We use a GitHub Actions workflow, aptly named "Scrape and Parse to GCS", to manage this.</p>
+                        
+                        <div class="challenges-list mt-2">
+                            <div class="challenge-item">
+                                <i class="bi bi-1-circle-fill challenge-icon"></i>
+                                <div>
+                                    <strong>Environment & Dependencies</strong>
+                                    <p class="small mb-0">The workflow runs on an <code>ubuntu-latest</code> GitHub runner with Python 3.10.6 and Google Chrome for Selenium.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="challenge-item">
+                                <i class="bi bi-2-circle-fill challenge-icon"></i>
+                                <div>
+                                    <strong>LinkedIn Scraping & On-the-Fly Parsing</strong>
+                                    <p class="small mb-0">Uses Selenium to control Chrome, extracting and structuring data from LinkedIn job listings.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="challenge-item">
+                                <i class="bi bi-3-circle-fill challenge-icon"></i>
+                                <div>
+                                    <strong>Loading to Data Warehouse</strong>
+                                    <p class="small mb-0">Efficiently batch-loads the parsed data from GCS into Google BigQuery for analysis.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column -->
+            <div class="col-lg-4 col-md-12 col-card">
+                <div class="card card-right h-100">
+                    <div class="card-header">
+                        <h2 class="h4 mb-0">Data Transformation & Example</h2>
+                    </div>
+                    <div class="card-body py-3">
+                        <h3 class="h5 mb-3">Phase 2: Data Cleansing and Normalization</h3>
+                        <p>Raw data, even after initial parsing, is rarely perfect. To prepare it for meaningful analysis and LLM fine-tuning, we employ Dataform for in-warehouse transformations within BigQuery.</p>
+                        
+                        <div class="section-accent mt-3 mb-3">
+                            <strong>Key Transformations:</strong>
+                            <ul class="mb-0">
+                                <li><strong>Normalizing Technology Names:</strong> Standardizing variations like "python", "Python3", "python 3.x" to "python"</li>
+                                <li><strong>Downcasing Text:</strong> Converting all relevant text fields to lowercase</li>
+                                <li><strong>Removing Extra Spaces and Special Characters:</strong> Cleaning up text fields</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mermaid">
+erDiagram
+    linkedin_jobs_staging {
+        STRING job_id PK "Unique identifier"
+        DATE ingestionDate PK "Partition key"
+        STRING job_title
+        STRING company_name
+        STRING location
+        STRING job_description
+    }
+
+    linkedin_augmented_staging {
+        STRING job_id PK "Links to staging"
+        STRUCT job_summary "Title, objective, seniority"
+        STRUCT required_qualifications "Experience, skills"
+        STRUCT preferred_qualifications "Skills, notes"
+    }
+
+    linkedin_jobs_staging ||--o{ linkedin_augmented_staging : "1-to-1"
+                        </div>
+                        <p class="text-center text-muted mt-2 small">BigQuery Schema Design</p>
+                        
+                        <h3 class="h5 mt-4 mb-3">Example Scraped Description</h3>
+                        <pre>Job Description:
+About Vaibe
+Vaibe is a leading B2B white-label software gamification venture of Körber Digital, envisions a future where every software provider seamlessly integrates gamification software features tailored to their unique needs and brand identity.
+
+About The Role
+We are looking for a Mid-Level DevOps Engineer to join our team and help scale, automate, and optimize our cloud infrastructure. You will be responsible for designing, implementing, and maintaining CI/CD pipelines, managing Azure cloud infrastructure, and ensuring smooth deployments using Terraform and GitHub Actions.
+
+Key Responsibilities
+Infrastructure as Code (IaC): Design, implement, and maintain Azure infrastructure using Terraform.
+CI/CD Automation: Build and manage GitHub Actions workflows to streamline deployments and testing.
+Cloud Operations: Ensure high availability, security, and performance of our Azure-based environments.
+Monitoring & Observability: Set up logging, monitoring, and alerting solutions to proactively identify issues.
+
+Must-Have Skills
+Terraform – Experience writing and managing infrastructure as code (IaC).
+Azure Cloud – Hands-on experience with Azure services like AKS, Azure DevOps, App Services, Networking, and Storage.
+GitHub Actions – Experience setting up and optimizing CI/CD pipelines.
+Linux & Scripting – Familiarity with shell scripting, PowerShell, or Python for automation.
+...</pre>
+                    </div>
+                    
+                    <div class="card-header mt-3">
+                        <h2 class="h4 mb-0">LLM Fine-Tuning & Future Work</h2>
+                    </div>
+                    <div class="card-body py-3">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="bi bi-robot fs-3 text-primary me-3"></i>
+                            <div>
+                                <h3 class="h5 mb-1">Fine-tuned Qwen3.0 1.7B</h3>
+                                <p class="small mb-0">Distilled from Gemini-2.0-flash for structured information extraction</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="d-flex">
+                                <div class="benefit-icon">
+                                    <i class="bi bi-lightning-charge-fill"></i>
+                                </div>
+                                <div>
+                                    <h4 class="h6">Efficient Extraction</h4>
+                                    <p class="small mb-0">The model efficiently extracts structured information from unstructured job descriptions, identifying required skills, qualifications, and job context.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="d-flex">
+                                <div class="benefit-icon">
+                                    <i class="bi bi-bar-chart-fill"></i>
+                                </div>
+                                <div>
+                                    <h4 class="h6">Skills Analysis</h4>
+                                    <p class="small mb-0">The system identifies trends in skill requirements across job listings, prioritizing them by frequency and relevance to career paths.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="d-flex">
+                                <div class="benefit-icon">
+                                    <i class="bi bi-award-fill"></i>
+                                </div>
+                                <div>
+                                    <h4 class="h6">Career Recommendations</h4>
+                                    <p class="small mb-0">Based on the extracted information, the system can recommend learning paths and skill development priorities for career advancement.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3 class="h5 mt-4 mb-3">Future Work</h3>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2"><i class="bi bi-arrow-right-circle-fill text-primary me-2"></i><strong>Enhanced Model Fine-tuning:</strong> Further optimize the model for specific domains and career paths</li>
+                            <li class="mb-2"><i class="bi bi-arrow-right-circle-fill text-primary me-2"></i><strong>Interactive Dashboard:</strong> Develop a user interface for exploring career insights and recommendations</li>
+                            <li class="mb-2"><i class="bi bi-arrow-right-circle-fill text-primary me-2"></i><strong>Time-Series Analysis:</strong> Track changing skill demands over time to identify emerging trends</li>
+                            <li class="mb-2"><i class="bi bi-arrow-right-circle-fill text-primary me-2"></i><strong>Regional Analysis:</strong> Expand the pipeline to include geographic variations in job requirements</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="mt-4">
+        <div class="container text-center">
+            <div>Meeting the Market: Using Foundational Models for Career Insights | 2025</div>
+            <div class="mt-2 small">Data-Driven Career Development Project</div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Mermaid
+            mermaid.initialize({ 
+                startOnLoad: true, 
+                theme: 'neutral',
+                themeVariables: { 
+                    'primaryColor': '#98c1d9', 
+                    'primaryBorderColor': '#3d5a80', 
+                    'lineColor': '#555'
+                },
+                flowchart: {
+                    htmlLabels: true,
+                    curve: 'basis'
+                }
+            });
+        });
+    </script>
+</body>
+</html>
