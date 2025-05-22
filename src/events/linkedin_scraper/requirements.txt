@@ -5,3 +5,4 @@ pandas
 beautifulsoup4
 requests
 lxml
+webdriver_manager

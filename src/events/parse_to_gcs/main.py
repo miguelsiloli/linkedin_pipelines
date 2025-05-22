@@ -21,7 +21,7 @@ from dotenv import load_dotenv
 
 # --- Prefect Imports ---
 from prefect import flow, task, get_run_logger
-from functools import lru_cache
+# from functools import lru_cache
 
 # Load environment variables from .env file
 load_dotenv()
@@ -320,47 +320,74 @@ class LinkedInJobParser:
 def get_gcs_credentials() -> service_account.Credentials:
     """
     Get Google Cloud Storage credentials efficiently using global cache.
-    
+    Includes logging for the raw and processed private key from environment variables.
+
     Returns:
         GCS service account credentials
     """
     global _gcs_credentials
-    
+
     # Return cached credentials if available
     if _gcs_credentials is not None:
+        logger.info("Returning cached GCS credentials.")
         return _gcs_credentials
-    
+
     logger.info("Loading GCP service account credentials from environment...")
-    
+
+    # --- Debugging: Log the raw private key from os.getenv ---
+    raw_private_key_env = os.getenv("PRIVATE_KEY")
+
+    if raw_private_key_env:
+        logger.info(f"Raw PRIVATE_KEY from env (first 30 chars): '{raw_private_key_env[:30]}'")
+        logger.info(f"Raw PRIVATE_KEY from env (last 30 chars): '{raw_private_key_env[-30:]}'")
+        # Check for literal '\\n' (two characters: backslash and n)
+        logger.info(f"Raw PRIVATE_KEY from env contains literal '\\\\n': {'\\n' in raw_private_key_env}")
+        # Check for actual newline character '\n'
+        logger.info(f"Raw PRIVATE_KEY from env contains actual newline: {'\n' in raw_private_key_env}")
+    else:
+        logger.warning("PRIVATE_KEY environment variable is not set or is empty.")
+        # Depending on your logic, you might want to raise an error here immediately
+        # if private_key is essential and not caught by the later validation.
+
+    # Process the private key (handle escaped newlines if any)
+    # The default "" for os.getenv and then replacing ensures it doesn't fail if PRIVATE_KEY is None
+    private_key_processed = os.getenv("PRIVATE_KEY", "").replace('\\n', '\n')
+    # --- End Debugging Logs ---
+
     # Read required fields from environment
     credentials_dict = {
         "type": os.getenv("TYPE"),
         "project_id": os.getenv("PROJECT_ID"),
         "private_key_id": os.getenv("PRIVATE_KEY_ID"),
-        "private_key": os.getenv("PRIVATE_KEY", "").replace('\\n', '\n'),
+        "private_key": private_key_processed, # Use the processed key
         "client_email": os.getenv("CLIENT_EMAIL"),
         "client_id": os.getenv("CLIENT_ID"),
         "auth_uri": os.getenv("AUTH_URI"),
         "token_uri": os.getenv("TOKEN_URI"),
         "auth_provider_x509_cert_url": os.getenv("AUTH_PROVIDER_X509_CERT_URL"),
         "client_x509_cert_url": os.getenv("CLIENT_X509_CERT_URL"),
-        "universe_domain": os.getenv("UNIVERSE_DOMAIN")
+        "universe_domain": os.getenv("UNIVERSE_DOMAIN") # Often optional, can be None
     }
-    
+
     # Validate required fields
+    # Note: "private_key" might be empty if PRIVATE_KEY env var was empty/missing
+    # and the .replace still results in an empty string.
     required_fields = ["type", "project_id", "private_key_id", "private_key", "client_email"]
     for field in required_fields:
-        if not credentials_dict.get(field):
+        if not credentials_dict.get(field): # Checks for None or empty string
             logger.error(f"Missing required GCP credential field: {field}")
             raise ValueError(f"Missing required GCP credential field: {field}")
-    
+
     # Create credentials object
     try:
         _gcs_credentials = service_account.Credentials.from_service_account_info(credentials_dict)
-        logger.info(f"Successfully loaded GCP credentials for {credentials_dict['client_email']}")
+        logger.info(f"Successfully loaded GCP credentials for {credentials_dict.get('client_email', 'N/A')}")
         return _gcs_credentials
     except Exception as e:
-        logger.error(f"Failed to create GCP credentials: {e}", exc_info=True)
+        # Log the dictionary content (excluding the private key for security) if creation fails
+        debug_dict = {k: v for k, v in credentials_dict.items() if k != "private_key"}
+        debug_dict["private_key_present_and_non_empty"] = bool(credentials_dict.get("private_key"))
+        logger.error(f"Failed to create GCP credentials: {e}. Credentials dict (key redacted): {debug_dict}", exc_info=True)
         raise
 
 
@@ -474,6 +501,8 @@ def linkedin_parser_flow(
     run_logger.info(f"Using Output Filename: {output_filename}")
     run_logger.info(f"Using HTML Parser: {config.DEFAULT_HTML_PARSER}")
     run_logger.info(f"Batch Size: {batch_size}")
+
+    run_logger.info(get_gcs_credentials())
     
     # Get GCS bucket name
     gcs_bucket_name = os.getenv("GCS_BUCKET_NAME")

@@ -18,25 +18,19 @@ from dotenv import load_dotenv
 # --- Logging Setup (Optional but Recommended) ---
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# --- Authentication Setup (Using your provided functions) ---
+# --- Authentication Setup ---
 def get_credentials():
     """
     Create and return service account credentials from environment variables.
     """
     try:
-        # Check if credentials file path is provided
-        creds_file = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
-        if creds_file and os.path.exists(creds_file):
-            logging.info(f"Using credentials from file: {creds_file}")
-            return service_account.Credentials.from_service_account_file(creds_file)
-
+        
         # Extract service account details from environment variables
         credentials_dict = {
             "type": os.getenv("TYPE"),
             "project_id": os.getenv("PROJECT_ID"),
             "private_key_id": os.getenv("PRIVATE_KEY_ID"),
-            # Ensure private_key exists before replacing newlines
-            "private_key": os.getenv("PRIVATE_KEY", "").replace("\\n", "\n"),
+            "private_key": os.getenv("PRIVATE_KEY").replace("\\n", "\n"),  # Fix newlines
             "client_email": os.getenv("CLIENT_EMAIL"),
             "client_id": os.getenv("CLIENT_ID"),
             "auth_uri": os.getenv("AUTH_URI"),
@@ -45,28 +39,19 @@ def get_credentials():
             "client_x509_cert_url": os.getenv("CLIENT_X509_CERT_URL"),
             "universe_domain": os.getenv("UNIVERSE_DOMAIN")
         }
-
+        print(credentials_dict)
+        print(os.getenv("PRIVATE_KEY"))
+        
         # Validate required credential fields
         required_fields = ["project_id", "private_key", "client_email"]
-        # Filter out None or empty string values before checking missing fields
-        valid_creds = {k: v for k, v in credentials_dict.items() if v}
-        missing_fields = [field for field in required_fields if field not in valid_creds]
-
+        missing_fields = [field for field in required_fields if not credentials_dict.get(field)]
+        
         if missing_fields:
-             # If creds_file wasn't found either, *then* it's an error
-             if not (creds_file and os.path.exists(creds_file)):
-                raise ValueError(f"Missing required credential environment variables: {', '.join(missing_fields)}")
-             else:
-                 # This case should ideally not be reached due to the initial check,
-                 # but added for robustness. It means file exists but env vars are missing.
-                 # The file credentials should have already been returned.
-                 logging.warning("Credential env vars missing, but proceeding with file credentials.")
-                 # This part is technically unreachable if the first 'if creds_file' succeeds.
-
-        logging.info("Using credentials from environment variables.")
-        # Use valid_creds which filters out None/empty optional fields
-        return service_account.Credentials.from_service_account_info(valid_creds)
-
+            raise ValueError(f"Missing required credential fields: {', '.join(missing_fields)}")
+        
+        # Create credentials object from dictionary
+        return service_account.Credentials.from_service_account_info(credentials_dict)
+        
     except Exception as e:
         logging.error(f"Failed to create credentials: {e}", exc_info=True)
         raise

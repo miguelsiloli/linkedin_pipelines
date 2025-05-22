@@ -1,1 +1,6 @@
-google-auth
+google-cloud-bigquery
+python-dotenv
+pandas
+tqdm
+google-generativeai
+google-api-core

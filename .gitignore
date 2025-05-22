@@ -8,3 +8,4 @@ githubkeygen.pub
 linkedin_job_pages_prefect_env
 .venv
 src/linkedin_schema
+src/events/gemini_labeler/.env
