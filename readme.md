@@ -42,7 +42,3 @@ To use this pipeline, you will need to:
 ├── readme.md                     # This file
 └── ...
 ```
-
-## License
-
-[Specify License, e.g., MIT License]
